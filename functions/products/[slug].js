@@ -1,4 +1,3 @@
-```javascript
 // Cloudflare Pages Function: /products/<product-name>
 // Looks the product up in the published Google Sheet and sends the visitor
 // to the affiliate link (server-side redirect, no page flash).
@@ -127,4 +126,3 @@ export async function onRequestGet(context) {
 
   return redirect(back);
 }
-```
