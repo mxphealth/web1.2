@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon & app icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <title>Health Products &amp; Wellness Resources | MaxproHealth</title>
+
+  <meta name="description" content="Explore health products, wellness resources, supplements, fitness, nutrition, skincare, and other health categories at MaxproHealth. Review products responsibly and consider your individual needs.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="MaxproHealth">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#16845b">
+  <meta name="color-scheme" content="light dark">
+
+  <link rel="canonical" href="https://maxprohealth.pages.dev/products">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MaxproHealth">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Health Products &amp; Wellness Resources | MaxproHealth">
+  <meta property="og:description" content="Explore health products and wellness resources by category at MaxproHealth.">
+  <meta property="og:url" content="https://maxprohealth.pages.dev/products">
+  <meta property="og:image" content="https://maxprohealth.pages.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MaxproHealth: health, wellness, products and K-Beauty">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Health Products &amp; Wellness Resources | MaxproHealth">
+  <meta name="twitter:description" content="Explore health products and wellness resources by category at MaxproHealth.">
+  <meta name="twitter:image" content="https://maxprohealth.pages.dev/og-image.png">
+  <meta name="twitter:image:alt" content="MaxproHealth: health, wellness, products and K-Beauty">
+
+  <!-- Prevent theme flash (uses the same key as header.html) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("mxp-theme");
+        if (
+          saved === "dark" ||
+          (!saved && window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (error) {
+        /* Storage unavailable: the page simply stays in light mode. */
+      }
+    })();
+  </script>
+
+  <style>
+    /* =========================================================
+       COLOR VARIABLES
+       IMPORTANT: products-data.js reads these exact names
+       (--accent, --accent-dark, --surface, --border, --muted,
+       --text, --background). Do not rename or prefix them.
+    ========================================================= */
+    :root {
+      --page-bg: #ffffff;
+      --surface: #f3f7f5;
+      --surface-2: #ffffff;
+      --background: #ffffff;
+      --text: #17231e;
+      --muted: #64736c;
+      --accent: #16845b;
+      --accent-dark: #0d6846;
+      --border: #dfe9e4;
+      --shadow: 0 12px 35px rgba(20, 45, 35, 0.08);
+      --header-bg: rgba(255, 255, 255, 0.96);
+      --header-border: #e5ebe8;
+      --menu-bg: #ffffff;
+    }
+
+    html.dark {
+      --page-bg: #101815;
+      --surface: #18211d;
+      --surface-2: #141c18;
+      /* Temporary bridge: lets the product cards follow dark mode.
+         Move to the global theme when the dark-green palette is built. */
+      --background: #141c18;
+      --text: #f1f6f3;
+      --muted: #a5b1ab;
+      --accent: #40c88d;
+      --accent-dark: #59d79e;
+      --border: #293631;
+      --shadow: 0 12px 35px rgba(0, 0, 0, 0.30);
+      --header-bg: rgba(15, 22, 19, 0.97);
+      --header-border: #293631;
+      --menu-bg: #111815;
+    }
+
+    /* =========================================================
+       BASE
+    ========================================================= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      /* Reserves the fixed header's height before header.html loads,
+         so content does not jump. Values match header.html. */
+      margin: 0;
+      padding-top: 74px;
+      background: var(--page-bg);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", system-ui, -apple-system,
+        BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+    }
+
+    @media (max-width: 850px) {
+      body {
+        padding-top: 68px;
+      }
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(22, 132, 91, 0.5);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    main {
+      width: 100%;
+    }
+
+    main:focus {
+      outline: none;
+    }
+
+    .mxp-container {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    /* Skip link */
+    .mxp-skip {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 1200;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      transform: translateY(-250%);
+    }
+
+    .mxp-skip:focus {
+      transform: none;
+    }
+
+    /* =========================================================
+       FALLBACK HEADER
+       Only shown if header.html cannot load, or without JavaScript.
+    ========================================================= */
+    .mxp-fb-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      background: var(--page-bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mxp-fb-inner {
+      width: min(1200px, calc(100% - 24px));
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .mxp-fb-brand {
+      flex-shrink: 0;
+      color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+    }
+
+    .mxp-fb-nav {
+      display: flex;
+      gap: 2px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .mxp-fb-nav a {
+      padding: 10px 9px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .mxp-fb-nav a:hover {
+      color: var(--accent-dark);
+    }
+
+    /* =========================================================
+       HERO / STATIC UPPER CONTENT
+    ========================================================= */
+    .mxp-products-hero {
+      padding: 38px 0 22px;
+      text-align: center;
+    }
+
+    .mxp-products-hero h1 {
+      max-width: 850px;
+      margin: 0 auto 8px;
+      font-size: clamp(1.4rem, 3.5vw, 2.45rem);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .mxp-products-hero h1 span {
+      color: var(--accent);
+    }
+
+    .mxp-products-hero > .mxp-container > p {
+      max-width: 760px;
+      margin: 0 auto 18px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .mxp-intro-box {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 26px 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      text-align: left;
+    }
+
+    .mxp-intro-box p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Affiliate + medical disclosure line (kept above ads and products) */
+    .mxp-disclosure {
+      margin-top: 16px !important;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.93rem;
+    }
+
+    .mxp-disclosure strong {
+      color: var(--text);
+    }
+
+    .mxp-disclosure a,
+    .mxp-text-link {
+      color: var(--accent-dark);
+      font-weight: 650;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .mxp-disclosure a:hover,
+    .mxp-text-link:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    /* =========================================================
+       ADVERTISEMENT SLOTS
+       One switch controls them all: <body data-ad-mode="...">
+         preview = labelled placeholder boxes (development)
+         off     = slots completely hidden
+         live    = real ads only (placeholder text hidden);
+                   slots show only while products are on screen
+       Heights are reserved so ads never push content around.
+    ========================================================= */
+    .mxp-ad {
+      width: 100%;
+      margin: 28px auto 0;
+      text-align: center;
+    }
+
+    .mxp-ad-top {
+      max-width: 970px;
+    }
+
+    .mxp-ad-after {
+      max-width: 336px;
+      margin: 44px auto 12px;
+    }
+
+    .mxp-ad-label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+    }
+
+    .mxp-ad-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .mxp-ad-top .mxp-ad-inner {
+      min-height: 100px;
+    }
+
+    .mxp-ad-after .mxp-ad-inner {
+      min-height: 250px;
+    }
+
+    .mxp-ad-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: inherit;
+      padding: 12px;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    body[data-ad-mode="off"] .mxp-ad {
+      display: none;
+    }
+
+    body[data-ad-mode="live"] .mxp-ad-preview {
+      display: none;
+    }
+
+    body[data-ad-mode="live"] main:not(:has(.pt-cat)) .mxp-ad {
+      display: none;
+    }
+
+    /* =========================================================
+       PRODUCTS AREA (filled by products-data.js)
+    ========================================================= */
+    .mxp-products-note {
+      max-width: 760px;
+      margin: 26px auto 6px;
+      padding: 0 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    #productContent {
+      min-height: 220px;
+    }
+
+    .mxp-products-empty,
+    .mxp-noscript {
+      display: none;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 0 16px 20px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Appears only if no product is shown after a short wait */
+    #productContent:not(:has(.pt-cat)) ~ .mxp-products-empty {
+      display: block;
+      opacity: 0;
+      animation: mxp-appear 0.3s ease 1.6s forwards;
+    }
+
+    @keyframes mxp-appear {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .mxp-noscript {
+      display: block;
+      padding: 0 16px;
+    }
+
+    /* =========================================================
+       RESPONSIBILITY BOX
+    ========================================================= */
+    .mxp-responsibility {
+      padding: 55px 0 20px;
+    }
+
+    .mxp-responsibility-box {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 34px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .mxp-responsibility h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+
+    .mxp-responsibility p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .mxp-responsibility ul {
+      margin: 18px 0 20px;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .mxp-responsibility li {
+      margin-bottom: 9px;
+    }
+
+    .mxp-responsibility li::marker {
+      color: var(--accent);
+    }
+
+    .mxp-responsibility .mxp-more {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* =========================================================
+       KEEP EXPLORING
+    ========================================================= */
+    .mxp-explore {
+      padding: 45px 0 65px;
+    }
+
+    .mxp-explore h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+
+    .mxp-explore-intro {
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .mxp-explore-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .mxp-explore-card {
+      display: block;
+      height: 100%;
+      padding: 22px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: var(--text);
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .mxp-explore-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+
+    .mxp-explore-card h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+
+    .mxp-explore-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 800px) {
+      .mxp-explore-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .mxp-products-hero {
+        padding: 34px 0 20px;
+      }
+
+      .mxp-intro-box,
+      .mxp-responsibility-box {
+        padding: 22px;
+      }
+
+      .mxp-ad-top .mxp-ad-inner {
+        min-height: 100px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+
+      #productContent:not(:has(.pt-cat)) ~ .mxp-products-empty {
+        animation: none;
+        opacity: 1;
+      }
+
+      .mxp-explore-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://maxprohealth.pages.dev/products#webpage",
+    "url": "https://maxprohealth.pages.dev/products",
+    "name": "Health Products & Wellness Resources | MaxproHealth",
+    "description": "Health products and wellness resources by category.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "MaxproHealth",
+      "url": "https://maxprohealth.pages.dev/"
+    }
+  }
+  </script>
+</head>
+
+<body data-ad-mode="preview">
+
+  <a class="mxp-skip" href="#main">Skip to main content</a>
+
+  <!-- Global header (header.html) -->
+  <div id="mxp-header">
+    <noscript>
+      <header class="mxp-fb-header">
+        <div class="mxp-fb-inner">
+          <a class="mxp-fb-brand" href="/">MaxproHealth</a>
+          <nav class="mxp-fb-nav" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/health">Health</a>
+            <a href="/health-tools">Health Tools</a>
+            <a href="/medical-services">Medical Services</a>
+            <a href="/products">Products</a>
+            <a href="/k-beauty">K-Beauty</a>
+            <a href="/contact">Contact</a>
+          </nav>
+        </div>
+      </header>
+    </noscript>
+  </div>
+
+  <!-- =======================================================
+       MAIN CONTENT
+  ======================================================== -->
+  <main id="main" tabindex="-1">
+
+    <!-- STATIC UPPER CONTENT -->
+    <section class="mxp-products-hero" aria-labelledby="products-title">
+      <div class="mxp-container">
+
+        <h1 id="products-title">
+          Health Products &amp; <span>Wellness Resources</span>
+        </h1>
+
+        <p>
+          Explore products, resources, and wellness options across a range
+          of health and lifestyle categories.
+        </p>
+
+        <div class="mxp-intro-box">
+          <p>
+            MaxproHealth provides organized health-product information to
+            help you explore different options more carefully. Product
+            availability and suitability can vary, so review information
+            carefully before making a purchasing decision.
+          </p>
+
+          <p class="mxp-disclosure">
+            <strong>Affiliate disclosure:</strong> some product links on
+            this page are affiliate links. If you buy through them,
+            MaxproHealth may earn a commission, which in most cases does
+            not increase the price you pay. Product information is general
+            and is not medical advice.
+            <a href="/affiliate-disclosure">Read the affiliate disclosure</a>
+            and the
+            <a href="/medical-disclaimer">medical disclaimer</a>.
+          </p>
+        </div>
+
+        <!-- ADVERTISEMENT SLOT 1 (top banner) -->
+        <aside class="mxp-ad mxp-ad-top" data-ad-slot="products-top" aria-label="Advertisement">
+          <span class="mxp-ad-label">Advertisement</span>
+          <div class="mxp-ad-inner">
+            <div class="mxp-ad-preview">Ad slot: top banner (728&times;90 desktop / 320&times;100 mobile)</div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <p class="mxp-products-note">
+      Product buttons open the seller&rsquo;s website in a new tab. Some are
+      affiliate links, see the
+      <a class="mxp-text-link" href="/affiliate-disclosure">affiliate disclosure</a>.
+    </p>
+
+    <!-- =====================================================
+         PRODUCT CONTENT
+         Loaded entirely from products-data.js
+         (products-data.js controls all product display)
+    ====================================================== -->
+    <div id="productContent"></div>
+
+    <noscript>
+      <p class="mxp-noscript">Product listings need JavaScript. Please enable it to view the products.</p>
+    </noscript>
+
+    <p class="mxp-products-empty" role="status">
+      No products are displayed right now. Listings are updated
+      regularly, so please check back soon.
+    </p>
+
+    <!-- ADVERTISEMENT SLOT 2 (after products) -->
+    <aside class="mxp-ad mxp-ad-after" data-ad-slot="products-after" aria-label="Advertisement">
+      <span class="mxp-ad-label">Advertisement</span>
+      <div class="mxp-ad-inner">
+        <div class="mxp-ad-preview">Ad slot: after products (300&times;250)</div>
+      </div>
+    </aside>
+
+    <!-- STATIC LOWER CONTENT -->
+    <section class="mxp-responsibility" aria-labelledby="responsible-title">
+      <div class="mxp-container">
+        <div class="mxp-responsibility-box">
+          <h2 id="responsible-title">Choose Health Products Responsibly</h2>
+
+          <p>
+            A product can be useful for one person and unsuitable for
+            another. Product information should therefore be considered
+            alongside your individual health needs, medications, allergies,
+            and goals.
+          </p>
+
+          <p>
+            MaxproHealth focuses on providing practical information so you
+            can evaluate products more carefully rather than relying only
+            on marketing claims.
+          </p>
+
+          <ul>
+            <li>Review ingredients and product information.</li>
+            <li>Consider your individual health circumstances.</li>
+            <li>Check for possible interactions or contraindications.</li>
+            <li>Use qualified healthcare advice when appropriate.</li>
+          </ul>
+
+          <p class="mxp-more">
+            Learn more in the
+            <a class="mxp-text-link" href="/medical-disclaimer">medical disclaimer</a>
+            and the
+            <a class="mxp-text-link" href="/affiliate-disclosure">affiliate disclosure</a>,
+            or read our general
+            <a class="mxp-text-link" href="/health">health guides</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEEP EXPLORING -->
+    <section class="mxp-explore" aria-labelledby="explore-title">
+      <div class="mxp-container">
+        <h2 id="explore-title">Keep Exploring</h2>
+        <p class="mxp-explore-intro">More ways to use MaxproHealth beyond the product listings.</p>
+
+        <ul class="mxp-explore-grid">
+          <li>
+            <a class="mxp-explore-card" href="/health">
+              <h3>Health Guides</h3>
+              <p>Practical guides on nutrition, fitness, wellness, and prevention.</p>
+            </a>
+          </li>
+          <li>
+            <a class="mxp-explore-card" href="/k-beauty">
+              <h3>K-Beauty</h3>
+              <p>Korean skincare routines and ingredients, explained simply.</p>
+            </a>
+          </li>
+          <li>
+            <a class="mxp-explore-card" href="/contact">
+              <h3>Ask About a Product</h3>
+              <p>Question or suggestion? Send us a message.</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global footer (footer.html) -->
+  <div id="mxp-footer"></div>
+
+  <!-- Global Scroll-to-top (scroll-top.html) -->
+  <div id="mxp-scroll-top"></div>
+
+  <!-- =======================================================
+       PRODUCT DATA LOADER
+       (only loads the file; products-data.js handles display)
+  ======================================================== -->
+  <script src="/products-data.js" defer></script>
+
+  <!-- =======================================================
+       SHARED PARTS LOADER (header.html, footer.html, scroll-top.html)
+       If the header cannot load, a small fallback navigation keeps
+       the site usable.
+  ======================================================== -->
+  <script>
+    (function () {
+      "use strict";
+
+      var TIMEOUT_MS = 10000;
+
+      function showHeaderFallback() {
+        var element = document.getElementById("mxp-header");
+
+        if (!element) {
+          return;
+        }
+
+        element.innerHTML =
+          '<header class="mxp-fb-header"><div class="mxp-fb-inner">' +
+          '<a class="mxp-fb-brand" href="/">MaxproHealth</a>' +
+          '<nav class="mxp-fb-nav" aria-label="Main navigation">' +
+          '<a href="/">Home</a><a href="/health">Health</a>' +
+          '<a href="/products">Products</a><a href="/k-beauty">K-Beauty</a>' +
+          '<a href="/contact">Contact</a></nav></div></header>';
+      }
+
+      async function loadComponent(elementId, file, onFail) {
+        var element = document.getElementById(elementId);
+
+        if (!element) {
+          return;
+        }
+
+        var controller =
+          typeof AbortController !== "undefined"
+            ? new AbortController()
+            : null;
+
+        var timer = controller
+          ? setTimeout(function () { controller.abort(); }, TIMEOUT_MS)
+          : null;
+
+        try {
+          var response = await fetch(file, {
+            cache: "no-cache",
+            signal: controller ? controller.signal : undefined
+          });
+
+          if (!response.ok) {
+            throw new Error("Component could not be loaded: " + file);
+          }
+
+          element.innerHTML = await response.text();
+
+          /* Re-execute scripts contained inside the component. */
+          element.querySelectorAll("script").forEach(function (oldScript) {
+            var newScript = document.createElement("script");
+
+            Array.from(oldScript.attributes).forEach(function (attribute) {
+              newScript.setAttribute(attribute.name, attribute.value);
+            });
+
+            newScript.textContent = oldScript.textContent;
+            oldScript.replaceWith(newScript);
+          });
+
+        } catch (error) {
+          console.error("MaxproHealth component error:", error);
+
+          if (onFail) {
+            onFail();
+          }
+        } finally {
+          if (timer) {
+            clearTimeout(timer);
+          }
+        }
+      }
+
+      Promise.all([
+        loadComponent("mxp-header", "header.html", showHeaderFallback),
+        loadComponent("mxp-footer", "footer.html", null),
+        loadComponent("mxp-scroll-top", "scroll-top.html", null)
+      ]);
+    })();
+  </script>
+
+</body>
+</html>

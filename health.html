@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon & app icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <title>Health &amp; Wellness Guides | MaxproHealth</title>
+
+  <meta name="description" content="Explore practical health and wellness guides from MaxproHealth covering nutrition, healthy living, fitness, prevention, and everyday wellness.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="MaxproHealth">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#16845b">
+  <meta name="color-scheme" content="light dark">
+
+  <link rel="canonical" href="https://maxprohealth.pages.dev/health">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MaxproHealth">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Health &amp; Wellness Guides | MaxproHealth">
+  <meta property="og:description" content="Practical health and wellness guides covering nutrition, fitness, prevention, and everyday wellbeing.">
+  <meta property="og:url" content="https://maxprohealth.pages.dev/health">
+  <meta property="og:image" content="https://maxprohealth.pages.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MaxproHealth: health, wellness, products and K-Beauty">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Health &amp; Wellness Guides | MaxproHealth">
+  <meta name="twitter:description" content="Practical health and wellness guides covering nutrition, fitness, prevention, and everyday wellbeing.">
+  <meta name="twitter:image" content="https://maxprohealth.pages.dev/og-image.png">
+  <meta name="twitter:image:alt" content="MaxproHealth: health, wellness, products and K-Beauty">
+
+  <!-- Prevent theme flash (uses the same key as header.html) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("mxp-theme");
+        if (
+          saved === "dark" ||
+          (!saved && window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (error) {
+        /* Storage unavailable: the page simply stays in light mode. */
+      }
+    })();
+  </script>
+
+  <style>
+    /* =========================================================
+       TOKENS
+       Same palette as the original health page. The --pg- prefix
+       keeps them safe from the :root variables in header.html.
+    ========================================================= */
+    :root {
+      --pg-page: #f7faf8;
+      --pg-card: #ffffff;
+      --pg-soft: #eef6f2;
+      --pg-text: #17231e;
+      --pg-muted: #5d6b65;
+      --pg-accent: #16845b;
+      --pg-accent-dark: #0d6846;
+      --pg-border: #e2ebe6;
+      --pg-on-accent: #ffffff;
+      --pg-shadow: 0 12px 35px rgba(20, 45, 35, 0.07);
+    }
+
+    html.dark {
+      --pg-page: #0f1613;
+      --pg-card: #151e1a;
+      --pg-soft: #1b2822;
+      --pg-text: #f1f6f3;
+      --pg-muted: #a5b1ab;
+      --pg-accent: #40c88d;
+      --pg-accent-dark: #59d79e;
+      --pg-border: #293631;
+      --pg-on-accent: #06150e;
+      --pg-shadow: 0 12px 35px rgba(0, 0, 0, 0.24);
+    }
+
+    /* =========================================================
+       BASE
+    ========================================================= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      /* Reserves the fixed header's height before header.html loads,
+         so content does not jump. Values match header.html. */
+      margin: 0;
+      padding-top: 68px;
+      background: var(--pg-page);
+      color: var(--pg-text);
+      font-family: Inter, "Segoe UI", system-ui, -apple-system,
+        BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+    }
+
+    @media (min-width: 851px) {
+      body {
+        padding-top: 74px;
+      }
+    }
+
+    a,
+    button,
+    summary {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(22, 132, 91, 0.5);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .health-page {
+      width: min(100% - 20px, 1200px);
+      margin: 0 auto;
+    }
+
+    .health-page:focus {
+      outline: none;
+    }
+
+    @media (min-width: 601px) {
+      .health-page {
+        width: min(1200px, calc(100% - 32px));
+      }
+    }
+
+    /* Skip link */
+    .mxp-skip {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 1200;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: var(--pg-accent);
+      color: var(--pg-on-accent);
+      font-weight: 700;
+      text-decoration: none;
+      transform: translateY(-250%);
+    }
+
+    .mxp-skip:focus {
+      transform: none;
+    }
+
+    /* =========================================================
+       FALLBACK HEADER
+       Only shown if header.html cannot load, or without JavaScript.
+    ========================================================= */
+    .mxp-fb-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      background: var(--pg-card);
+      border-bottom: 1px solid var(--pg-border);
+    }
+
+    .mxp-fb-inner {
+      width: min(1200px, calc(100% - 24px));
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .mxp-fb-brand {
+      flex-shrink: 0;
+      color: var(--pg-text);
+      font-size: 1.05rem;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+    }
+
+    .mxp-fb-nav {
+      display: flex;
+      gap: 2px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .mxp-fb-nav a {
+      padding: 10px 9px;
+      color: var(--pg-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .mxp-fb-nav a:hover {
+      color: var(--pg-accent-dark);
+    }
+
+    /* =========================================================
+       HERO (original layout and type sizes)
+    ========================================================= */
+    .health-hero {
+      padding: 55px 0 45px;
+      text-align: center;
+    }
+
+    .health-eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: var(--pg-soft);
+      color: var(--pg-accent-dark);
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .health-hero h1 {
+      max-width: 850px;
+      margin: 0 auto 18px;
+      font-size: clamp(2.3rem, 5vw, 4.1rem);
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+      font-weight: 780;
+    }
+
+    .health-hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--pg-muted);
+      font-size: 1.05rem;
+    }
+
+    @media (min-width: 601px) {
+      .health-hero {
+        padding: 80px 0 65px;
+      }
+    }
+
+    /* =========================================================
+       ON-PAGE LINKS
+    ========================================================= */
+    .health-jump {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 0 42px;
+    }
+
+    .health-jump span {
+      width: 100%;
+      margin-bottom: 2px;
+      color: var(--pg-muted);
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .health-jump a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0 15px;
+      border: 1px solid var(--pg-border);
+      border-radius: 999px;
+      background: var(--pg-card);
+      color: var(--pg-text);
+      font-size: 0.85rem;
+      font-weight: 650;
+      text-decoration: none;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .health-jump a:hover {
+      border-color: var(--pg-accent);
+      color: var(--pg-accent-dark);
+    }
+
+    @media (min-width: 601px) {
+      .health-jump span {
+        width: auto;
+        margin: 0 6px 0 0;
+      }
+    }
+
+    /* =========================================================
+       SECTIONS (original heading sizes)
+    ========================================================= */
+    .health-section {
+      padding: 20px 0 65px;
+    }
+
+    .health-section-heading {
+      margin-bottom: 25px;
+    }
+
+    .health-section-heading h2 {
+      margin: 0 0 7px;
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      letter-spacing: -0.035em;
+    }
+
+    .health-section-heading p {
+      margin: 0;
+      color: var(--pg-muted);
+    }
+
+    .health-text-link {
+      color: var(--pg-accent-dark);
+      font-weight: 650;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .health-text-link:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    /* =========================================================
+       TOPIC + LINK CARDS (original card style)
+    ========================================================= */
+    .health-categories {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .health-category {
+      display: block;
+      height: 100%;
+      padding: 25px 20px;
+      background: var(--pg-card);
+      border: 1px solid var(--pg-border);
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--pg-text);
+      box-shadow: var(--pg-shadow);
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .health-category:hover {
+      transform: translateY(-3px);
+      border-color: rgba(22, 132, 91, 0.35);
+    }
+
+    .health-category-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      background: var(--pg-soft);
+      font-size: 1.25rem;
+    }
+
+    .health-category h3 {
+      margin: 0 0 7px;
+      font-size: 1rem;
+    }
+
+    .health-category p {
+      margin: 0;
+      color: var(--pg-muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    @media (min-width: 601px) {
+      .health-categories {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 901px) {
+      .health-categories {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .health-categories-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* =========================================================
+       FEATURED GUIDE (compact)
+    ========================================================= */
+    .health-featured {
+      margin-bottom: 55px;
+      padding: 22px 20px;
+      background: var(--pg-card);
+      border: 1px solid var(--pg-border);
+      border-radius: 16px;
+      box-shadow: var(--pg-shadow);
+    }
+
+    .health-featured-main {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .health-label {
+      color: var(--pg-accent-dark);
+      font-size: 0.75rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .health-featured h3 {
+      margin: 4px 0 6px;
+      font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+    }
+
+    .health-featured-main p {
+      max-width: 62ch;
+      margin: 0;
+      color: var(--pg-muted);
+      font-size: 0.92rem;
+    }
+
+    .health-button {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 11px 17px;
+      border-radius: 10px;
+      background: var(--pg-accent);
+      color: var(--pg-on-accent);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: background 0.2s ease;
+    }
+
+    .health-button:hover {
+      background: var(--pg-accent-dark);
+    }
+
+    .health-habits {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 18px 0 0;
+      padding: 18px 0 0;
+      border-top: 1px solid var(--pg-border);
+      list-style: none;
+      counter-reset: habit;
+    }
+
+    .health-habits li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      counter-increment: habit;
+    }
+
+    .health-habits li::before {
+      content: counter(habit);
+      flex: 0 0 26px;
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--pg-accent);
+      color: var(--pg-on-accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .health-habits strong {
+      display: block;
+    }
+
+    .health-habits span {
+      color: var(--pg-muted);
+    }
+
+    @media (min-width: 701px) {
+      .health-featured {
+        padding: 24px 28px;
+      }
+
+      .health-featured-main {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+
+      .health-habits {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+    }
+
+    /* =========================================================
+       GUIDES
+    ========================================================= */
+    .health-articles {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .health-article {
+      padding: 22px;
+      background: var(--pg-card);
+      border: 1px solid var(--pg-border);
+      border-radius: 16px;
+      box-shadow: var(--pg-shadow);
+    }
+
+    .health-article:target {
+      border-color: var(--pg-accent);
+    }
+
+    .health-article-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .health-article-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--pg-soft);
+      font-size: 1.25rem;
+    }
+
+    .health-article-category {
+      color: var(--pg-accent-dark);
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .health-article h3 {
+      margin: 0 0 9px;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .health-article > p {
+      margin: 0 0 14px;
+      color: var(--pg-muted);
+      font-size: 0.87rem;
+    }
+
+    .health-keypoints summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 44px;
+      padding: 8px 0;
+      border-top: 1px solid var(--pg-border);
+      color: var(--pg-accent-dark);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .health-keypoints summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .health-keypoints summary::after {
+      content: "+";
+      content: "+" / "";
+      font-size: 1.4rem;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .health-keypoints[open] summary::after {
+      content: "\2212";
+      content: "\2212" / "";
+    }
+
+    .health-keypoints ul {
+      margin: 4px 0 8px;
+      padding-left: 20px;
+      font-size: 0.87rem;
+    }
+
+    .health-keypoints li {
+      margin-bottom: 9px;
+    }
+
+    .health-related {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+      margin: 6px 0 0;
+      padding-top: 12px;
+      border-top: 1px solid var(--pg-border);
+      font-size: 0.84rem;
+    }
+
+    .health-related span {
+      color: var(--pg-muted);
+    }
+
+    .health-related a {
+      color: var(--pg-accent-dark);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .health-related a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    @media (min-width: 601px) {
+      .health-articles {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 901px) {
+      .health-articles {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+
+      .health-category:hover {
+        transform: none;
+      }
+    }
+  </style>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://maxprohealth.pages.dev/health#webpage",
+    "url": "https://maxprohealth.pages.dev/health",
+    "name": "Health & Wellness Guides | MaxproHealth",
+    "description": "Practical health and wellness guides covering nutrition, fitness, prevention, and everyday wellbeing.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "MaxproHealth",
+      "url": "https://maxprohealth.pages.dev/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+  <a class="mxp-skip" href="#main">Skip to main content</a>
+
+  <!-- Global Header (header.html) -->
+  <div id="mxp-header">
+    <noscript>
+      <header class="mxp-fb-header">
+        <div class="mxp-fb-inner">
+          <a class="mxp-fb-brand" href="/">MaxproHealth</a>
+          <nav class="mxp-fb-nav" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/health">Health</a>
+            <a href="/health-tools">Health Tools</a>
+            <a href="/medical-services">Medical Services</a>
+            <a href="/products">Products</a>
+            <a href="/k-beauty">K-Beauty</a>
+            <a href="/contact">Contact</a>
+          </nav>
+        </div>
+      </header>
+    </noscript>
+  </div>
+
+  <main class="health-page" id="main" tabindex="-1">
+
+    <!-- =======================================================
+         HERO
+    ======================================================== -->
+    <section class="health-hero" aria-labelledby="health-page-title">
+      <span class="health-eyebrow">Health &amp; Wellness</span>
+      <h1 id="health-page-title">Practical knowledge for a healthier everyday life.</h1>
+      <p>
+        Explore clear, useful health and wellness guides covering
+        nutrition, healthy living, fitness, prevention, and
+        everyday wellbeing.
+      </p>
+    </section>
+
+    <!-- =======================================================
+         ON-PAGE LINKS
+    ======================================================== -->
+    <nav class="health-jump" aria-label="On this page">
+      <span>Jump to</span>
+      <a href="#health-topics">Topics</a>
+      <a href="#featured-guide">Featured guide</a>
+      <a href="#nutrition">Nutrition</a>
+      <a href="#fitness">Fitness</a>
+      <a href="#wellness">Wellness</a>
+      <a href="#prevention">Prevention</a>
+      <a href="#hydration">Hydration</a>
+      <a href="#daily-routines">Daily routines</a>
+      <a href="#keep-exploring">More</a>
+    </nav>
+
+    <!-- =======================================================
+         HEALTH TOPICS
+    ======================================================== -->
+    <section class="health-section" aria-labelledby="health-topics">
+      <div class="health-section-heading">
+        <h2 id="health-topics">Explore Health Topics</h2>
+        <p>Start with a topic that matches your interests and goals.</p>
+      </div>
+
+      <ul class="health-categories">
+        <li>
+          <a class="health-category" href="#nutrition" aria-label="Explore Nutrition guides">
+            <div class="health-category-icon" aria-hidden="true">🥗</div>
+            <h3>Nutrition</h3>
+            <p>Food, nutrients, balanced eating, and practical nutrition information.</p>
+          </a>
+        </li>
+        <li>
+          <a class="health-category" href="#fitness" aria-label="Explore Fitness and Movement guides">
+            <div class="health-category-icon" aria-hidden="true">🏃</div>
+            <h3>Fitness &amp; Movement</h3>
+            <p>Everyday movement, exercise principles, and active living.</p>
+          </a>
+        </li>
+        <li>
+          <a class="health-category" href="#wellness" aria-label="Explore Wellness guides">
+            <div class="health-category-icon" aria-hidden="true">🌿</div>
+            <h3>Wellness</h3>
+            <p>Practical approaches to supporting a balanced and healthy lifestyle.</p>
+          </a>
+        </li>
+        <li>
+          <a class="health-category" href="#prevention" aria-label="Explore Prevention guides">
+            <div class="health-category-icon" aria-hidden="true">🛡️</div>
+            <h3>Prevention</h3>
+            <p>Educational information about healthy habits and risk awareness.</p>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- =======================================================
+         FEATURED GUIDE (compact)
+    ======================================================== -->
+    <section class="health-featured" aria-labelledby="featured-guide">
+      <div class="health-featured-main">
+        <div>
+          <span class="health-label">Featured Guide</span>
+          <h3 id="featured-guide">Building Better Everyday Health Habits</h3>
+          <p>
+            Small, consistent habits can play an important role in
+            supporting long-term wellbeing. Learn practical principles
+            for creating a healthier daily routine.
+          </p>
+        </div>
+        <a class="health-button" href="#articles">Explore Guides</a>
+      </div>
+
+      <ol class="health-habits">
+        <li>
+          <div>
+            <strong>Start small</strong>
+            <span>Pick one habit you can repeat easily.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Attach it to your day</strong>
+            <span>Link it to something you already do.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Review and adjust</strong>
+            <span>Check in after a few weeks and refine.</span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- =======================================================
+         HEALTH GUIDES
+    ======================================================== -->
+    <section class="health-section" id="articles" aria-labelledby="latest-guides">
+      <div class="health-section-heading">
+        <h2 id="latest-guides">Health Guides &amp; Articles</h2>
+        <p>
+          Educational summaries designed to make health information
+          easier to understand and apply. Open &ldquo;Key points&rdquo;
+          on any guide for the essentials. General information only, not
+          medical advice: read the
+          <a class="health-text-link" href="/medical-disclaimer">medical disclaimer</a>,
+          or <a class="health-text-link" href="/contact">suggest a topic</a>.
+        </p>
+      </div>
+
+      <div class="health-articles">
+
+        <article class="health-article" id="nutrition">
+          <div class="health-article-top">
+            <span class="health-article-icon" aria-hidden="true">🥗</span>
+            <span class="health-article-category">Nutrition</span>
+          </div>
+          <h3>Understanding the Basics of Balanced Nutrition</h3>
+          <p>
+            Learn the basic principles behind balanced meals,
+            nutrient variety, and practical food choices.
+          </p>
+          <details class="health-keypoints">
+            <summary>Key points</summary>
+            <ul>
+              <li>Build meals around a variety of vegetables, fruits, whole grains, legumes, nuts, and lean or plant-based protein.</li>
+              <li>Different foods supply different nutrients, so variety matters more than any single &ldquo;superfood&rdquo;.</li>
+              <li>Limit foods high in added sugar, salt, and saturated fat. The World Health Organization advises adults to keep salt intake below 5 g a day.</li>
+              <li>Needs differ with age, health conditions, and pregnancy. A doctor or registered dietitian can give personal guidance.</li>
+            </ul>
+          </details>
+          <p class="health-related">
+            <span>Related:</span>
+            <a href="/products">Nutrition &amp; Supplements</a>
+            <a href="#hydration">Hydration guide</a>
+          </p>
+        </article>
+
+        <article class="health-article" id="fitness">
+          <div class="health-article-top">
+            <span class="health-article-icon" aria-hidden="true">🏃</span>
+            <span class="health-article-category">Fitness</span>
+          </div>
+          <h3>Why Regular Movement Matters</h3>
+          <p>
+            Explore the role of regular physical activity in
+            supporting everyday health and wellbeing.
+          </p>
+          <details class="health-keypoints">
+            <summary>Key points</summary>
+            <ul>
+              <li>Many health authorities, including the World Health Organization, suggest adults aim for at least 150 minutes of moderate-intensity activity a week.</li>
+              <li>Strength-based activity on two or more days a week supports muscles and bones.</li>
+              <li>Any movement counts: walking, taking the stairs, and breaking up long periods of sitting all help.</li>
+              <li>Increase activity gradually, and speak with a healthcare professional first if you have a health condition or have been inactive.</li>
+            </ul>
+          </details>
+          <p class="health-related">
+            <span>Related:</span>
+            <a href="/products">Fitness &amp; Performance</a>
+            <a href="#daily-routines">Daily routines</a>
+          </p>
+        </article>
+
+        <article class="health-article" id="wellness">
+          <div class="health-article-top">
+            <span class="health-article-icon" aria-hidden="true">🌿</span>
+            <span class="health-article-category">Wellness</span>
+          </div>
+          <h3>Simple Habits for Everyday Wellness</h3>
+          <p>
+            Discover practical lifestyle habits that can support a
+            more consistent approach to wellbeing.
+          </p>
+          <details class="health-keypoints">
+            <summary>Key points</summary>
+            <ul>
+              <li>Keep regular sleep and wake times. Adults generally need seven or more hours of sleep a night.</li>
+              <li>Build in stress breaks, such as short pauses, time outdoors, or relaxation practices you enjoy.</li>
+              <li>Stay connected with other people, which is widely recognized as part of wellbeing.</li>
+              <li>Focus on one small habit at a time, because it is easier to keep.</li>
+            </ul>
+          </details>
+          <p class="health-related">
+            <span>Related:</span>
+            <a href="/products">Sleep &amp; Stress</a>
+            <a href="#prevention">Prevention guide</a>
+          </p>
+        </article>
+
+        <article class="health-article" id="prevention">
+          <div class="health-article-top">
+            <span class="health-article-icon" aria-hidden="true">🛡️</span>
+            <span class="health-article-category">Prevention</span>
+          </div>
+          <h3>Everyday Health Prevention Principles</h3>
+          <p>
+            Understand the role of healthy routines, awareness,
+            and informed everyday choices.
+          </p>
+          <details class="health-keypoints">
+            <summary>Key points</summary>
+            <ul>
+              <li>Keep up with routine check-ups, screenings, and vaccinations recommended by your doctor or local health authority.</li>
+              <li>Avoid tobacco, and limit alcohol or avoid it altogether.</li>
+              <li>Protect your skin from excess sun, wash hands regularly, and look after your teeth.</li>
+              <li>Know your family health history, and discuss any change in your health with a professional.</li>
+            </ul>
+          </details>
+          <p class="health-related">
+            <span>Related:</span>
+            <a href="/medical-disclaimer">Medical disclaimer</a>
+            <a href="#wellness">Wellness guide</a>
+          </p>
+        </article>
+
+        <article class="health-article" id="hydration">
+          <div class="health-article-top">
+            <span class="health-article-icon" aria-hidden="true">💧</span>
+            <span class="health-article-category">Healthy Living</span>
+          </div>
+          <h3>Everyday Hydration and Healthy Living</h3>
+          <p>
+            Learn general principles for maintaining healthy
+            hydration habits throughout the day.
+          </p>
+          <details class="health-keypoints">
+            <summary>Key points</summary>
+            <ul>
+              <li>Fluid needs vary with climate, activity, age, and health, so no single amount suits everyone.</li>
+              <li>Water is a good everyday choice. Drinks high in added sugar are best kept occasional.</li>
+              <li>Thirst is the usual cue to drink, and fluids from food and other drinks also count.</li>
+              <li>If you have a kidney, heart, or other condition, follow any fluid advice your doctor has given you.</li>
+            </ul>
+          </details>
+          <p class="health-related">
+            <span>Related:</span>
+            <a href="#nutrition">Nutrition guide</a>
+            <a href="/products">General Wellness</a>
+          </p>
+        </article>
+
+        <article class="health-article" id="daily-routines">
+          <div class="health-article-top">
+            <span class="health-article-icon" aria-hidden="true">😴</span>
+            <span class="health-article-category">Lifestyle</span>
+          </div>
+          <h3>The Importance of Healthy Daily Routines</h3>
+          <p>
+            Explore foundational lifestyle habits that contribute to
+            a well-rounded approach to health.
+          </p>
+          <details class="health-keypoints">
+            <summary>Key points</summary>
+            <ul>
+              <li>Regular mealtimes, sleep, and movement create a rhythm that makes healthy choices easier.</li>
+              <li>Plan ahead: prepare simple meals, schedule activity like any other appointment, and keep water within reach.</li>
+              <li>Stay flexible. Missing a day is not failure, so simply return to your routine the next day.</li>
+              <li>Review what is working every few weeks and adjust where needed.</li>
+            </ul>
+          </details>
+          <p class="health-related">
+            <span>Related:</span>
+            <a href="#fitness">Fitness guide</a>
+            <a href="/contact">Suggest a topic</a>
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =======================================================
+         KEEP EXPLORING
+    ======================================================== -->
+    <section class="health-section" aria-labelledby="keep-exploring">
+      <div class="health-section-heading">
+        <h2 id="keep-exploring">Keep Exploring</h2>
+        <p>More ways to use MaxproHealth beyond the health guides.</p>
+      </div>
+
+      <ul class="health-categories health-categories-3">
+        <li>
+          <a class="health-category" href="/products">
+            <div class="health-category-icon" aria-hidden="true">🛒</div>
+            <h3>Product Categories</h3>
+            <p>Browse product categories across health and lifestyle.</p>
+          </a>
+        </li>
+        <li>
+          <a class="health-category" href="/k-beauty">
+            <div class="health-category-icon" aria-hidden="true">✨</div>
+            <h3>K-Beauty</h3>
+            <p>Korean skincare ideas, routines, and ingredients, explained simply.</p>
+          </a>
+        </li>
+        <li>
+          <a class="health-category" href="/k-beauty#routine">
+            <div class="health-category-icon" aria-hidden="true">🧴</div>
+            <h3>A Simple Skincare Routine</h3>
+            <p>Cleanse, hydrate, treat, moisturize, and protect.</p>
+          </a>
+        </li>
+        <li>
+          <a class="health-category" href="/contact">
+            <div class="health-category-icon" aria-hidden="true">💬</div>
+            <h3>Suggest a Topic</h3>
+            <p>Tell us which health topic you would like to see covered.</p>
+          </a>
+        </li>
+        <li>
+          <a class="health-category" href="/medical-disclaimer">
+            <div class="health-category-icon" aria-hidden="true">📋</div>
+            <h3>Medical Disclaimer</h3>
+            <p>How to use the information on this site safely.</p>
+          </a>
+        </li>
+        <li>
+          <a class="health-category" href="/affiliate-disclosure">
+            <div class="health-category-icon" aria-hidden="true">🔗</div>
+            <h3>Affiliate Disclosure</h3>
+            <p>How product links work and how MaxproHealth may earn a commission.</p>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Global Footer (footer.html) -->
+  <div id="mxp-footer"></div>
+
+  <!-- Global Scroll-to-top (scroll-top.html) -->
+  <div id="mxp-scroll-top"></div>
+
+  <!-- =========================================================
+       GLOBAL COMPONENT LOADER
+       Loads header.html, footer.html and scroll-top.html exactly
+       as before. If the header cannot load, a small fallback
+       navigation keeps the site usable.
+  ========================================================== -->
+  <script>
+    (function () {
+      "use strict";
+
+      var TIMEOUT_MS = 10000;
+
+      function showHeaderFallback() {
+        var element = document.getElementById("mxp-header");
+
+        if (!element) {
+          return;
+        }
+
+        element.innerHTML =
+          '<header class="mxp-fb-header"><div class="mxp-fb-inner">' +
+          '<a class="mxp-fb-brand" href="/">MaxproHealth</a>' +
+          '<nav class="mxp-fb-nav" aria-label="Main navigation">' +
+          '<a href="/">Home</a><a href="/health">Health</a>' +
+          '<a href="/products">Products</a><a href="/k-beauty">K-Beauty</a>' +
+          '<a href="/contact">Contact</a></nav></div></header>';
+      }
+
+      async function loadComponent(elementId, file, onFail) {
+        var element = document.getElementById(elementId);
+
+        if (!element) {
+          return;
+        }
+
+        var controller =
+          typeof AbortController !== "undefined"
+            ? new AbortController()
+            : null;
+
+        var timer = controller
+          ? setTimeout(function () { controller.abort(); }, TIMEOUT_MS)
+          : null;
+
+        try {
+          var response = await fetch(file, {
+            cache: "no-cache",
+            signal: controller ? controller.signal : undefined
+          });
+
+          if (!response.ok) {
+            throw new Error("Component could not be loaded: " + file);
+          }
+
+          element.innerHTML = await response.text();
+
+          /* Re-execute scripts contained inside the component. */
+          element.querySelectorAll("script").forEach(function (oldScript) {
+            var newScript = document.createElement("script");
+
+            Array.from(oldScript.attributes).forEach(function (attribute) {
+              newScript.setAttribute(attribute.name, attribute.value);
+            });
+
+            newScript.textContent = oldScript.textContent;
+            oldScript.replaceWith(newScript);
+          });
+
+        } catch (error) {
+          console.error("MaxproHealth component error:", error);
+
+          if (onFail) {
+            onFail();
+          }
+        } finally {
+          if (timer) {
+            clearTimeout(timer);
+          }
+        }
+      }
+
+      Promise.all([
+        loadComponent("mxp-header", "header.html", showHeaderFallback),
+        loadComponent("mxp-footer", "footer.html", null),
+        loadComponent("mxp-scroll-top", "scroll-top.html", null)
+      ]);
+    })();
+  </script>
+
+  <!-- Opens a guide's key points when a link such as /health#nutrition lands on it -->
+  <script>
+    (function () {
+      "use strict";
+
+      function openTargetGuide() {
+        var id;
+
+        try {
+          id = decodeURIComponent(window.location.hash.slice(1));
+        } catch (error) {
+          return;
+        }
+
+        if (!id) {
+          return;
+        }
+
+        var guide = document.getElementById(id);
+
+        if (guide && guide.classList.contains("health-article")) {
+          var details = guide.querySelector("details");
+
+          if (details) {
+            details.open = true;
+          }
+        }
+      }
+
+      window.addEventListener("hashchange", openTargetGuide);
+      openTargetGuide();
+    })();
+  </script>
+
+</body>
+</html>

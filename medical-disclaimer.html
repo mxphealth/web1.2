@@ -1,0 +1,785 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon & app icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+
+  <title>Medical Disclaimer | MaxProHealth</title>
+  <meta name="description" content="Read the MaxProHealth Medical Disclaimer. Our health and wellness content is provided for educational and informational purposes and does not replace professional medical advice.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="canonical" href="https://maxprohealth.pages.dev/medical-disclaimer">
+
+  <style>
+    :root {
+      color-scheme: light;
+      --md-bg: #ffffff;
+      --md-surface: #f7f9fc;
+      --md-text: #263445;
+      --md-heading: #142b45;
+      --md-muted: #617084;
+      --md-border: #e2e8f0;
+      --md-accent: #16845b;
+      --md-accent-hover: #116b49;
+      --md-notice-bg: #edf8f2;
+      --md-notice-border: #b9e5ca;
+      --md-content-width: 900px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      color-scheme: light;
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+      background: var(--md-bg);
+    }
+
+    body {
+      margin: 0;
+      background: var(--md-bg);
+      color: var(--md-text);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body,
+    main,
+    section,
+    article,
+    footer,
+    header {
+      color-scheme: light;
+    }
+
+    a {
+      color: var(--md-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+
+    a:hover {
+      color: var(--md-accent-hover);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #16845b;
+      outline-offset: 4px;
+    }
+
+    .md-main {
+      width: 100%;
+      min-height: 60vh;
+      padding: 52px 20px 80px;
+      background: var(--md-bg);
+    }
+
+    .md-container {
+      width: 100%;
+      max-width: var(--md-content-width);
+      margin: 0 auto;
+    }
+
+    .md-breadcrumb {
+      margin: 0 0 22px;
+      color: var(--md-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .md-breadcrumb a {
+      color: var(--md-muted);
+      text-decoration: none;
+    }
+
+    .md-breadcrumb a:hover {
+      color: var(--md-accent);
+      text-decoration: underline;
+    }
+
+    .md-hero {
+      margin-bottom: 34px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--md-border);
+    }
+
+    .md-eyebrow {
+      margin: 0 0 10px;
+      color: var(--md-accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .md-hero h1 {
+      margin: 0 0 16px;
+      color: var(--md-heading);
+      font-size: clamp(30px, 4.5vw, 42px);
+      font-weight: 750;
+      line-height: 1.2;
+      letter-spacing: -0.8px;
+    }
+
+    .md-intro {
+      max-width: 760px;
+      margin: 0;
+      color: var(--md-muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .md-notice {
+      margin: 0 0 36px;
+      padding: 22px 24px;
+      border: 1px solid var(--md-notice-border);
+      border-left: 4px solid var(--md-accent);
+      border-radius: 10px;
+      background: var(--md-notice-bg);
+    }
+
+    .md-notice h2 {
+      margin: 0 0 8px;
+      color: var(--md-heading);
+      font-size: 19px;
+      line-height: 1.45;
+    }
+
+    .md-notice p {
+      margin: 0;
+      color: var(--md-text);
+    }
+
+    .md-content section {
+      margin: 0 0 30px;
+      scroll-margin-top: 100px;
+    }
+
+    .md-content h2 {
+      margin: 0 0 12px;
+      color: var(--md-heading);
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.25px;
+    }
+
+    .md-content p {
+      margin: 0 0 14px;
+    }
+
+    .md-content ul {
+      margin: 12px 0 18px;
+      padding-left: 25px;
+    }
+
+    .md-content li {
+      margin-bottom: 9px;
+      padding-left: 3px;
+    }
+
+    .md-contact {
+      margin-top: 38px;
+      padding: 26px;
+      border: 1px solid var(--md-border);
+      border-radius: 12px;
+      background: var(--md-surface);
+    }
+
+    .md-contact h2 {
+      margin-top: 0;
+    }
+
+    .md-contact p {
+      margin-bottom: 18px;
+    }
+
+    .md-contact-link {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border: 1px solid var(--md-accent);
+      border-radius: 7px;
+      background: var(--md-accent);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-align: center;
+      text-decoration: none;
+      transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease;
+    }
+
+    .md-contact-link:hover {
+      border-color: var(--md-accent-hover);
+      background: var(--md-accent-hover);
+      color: #ffffff;
+    }
+
+    .md-contact-link:active {
+      transform: translateY(1px);
+    }
+
+    .md-updated {
+      margin-top: 34px;
+      padding-top: 20px;
+      border-top: 1px solid var(--md-border);
+      color: var(--md-muted);
+      font-size: 13px;
+    }
+
+    .md-loading {
+      padding: 16px;
+      color: var(--md-muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      .md-main {
+        padding: 32px 17px 56px;
+      }
+
+      .md-hero {
+        margin-bottom: 26px;
+        padding-bottom: 22px;
+      }
+
+      .md-hero h1 {
+        font-size: 31px;
+        letter-spacing: -0.5px;
+      }
+
+      .md-intro {
+        font-size: 15px;
+      }
+
+      .md-notice {
+        margin-bottom: 28px;
+        padding: 18px;
+      }
+
+      .md-content section {
+        margin-bottom: 26px;
+      }
+
+      .md-content h2 {
+        font-size: 20px;
+      }
+
+      .md-contact {
+        padding: 20px 17px;
+      }
+
+      .md-contact-link {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Shared global header -->
+  <div id="mxp-header-placeholder">
+    <div class="md-loading" role="status">Loading navigation…</div>
+  </div>
+
+  <main class="md-main">
+    <article class="md-container">
+
+      <nav class="md-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page">Medical Disclaimer</span>
+      </nav>
+
+      <header class="md-hero">
+        <p class="md-eyebrow">Important Health Information</p>
+        <h1>Medical Disclaimer</h1>
+        <p class="md-intro">
+          MaxProHealth provides general health, wellness, nutrition, and
+          lifestyle information to support education and informed decision-making.
+          Please read this disclaimer carefully before using our website.
+        </p>
+      </header>
+
+      <aside class="md-notice" aria-labelledby="md-important-heading">
+        <h2 id="md-important-heading">Important Notice</h2>
+        <p>
+          The information published on MaxProHealth is for general educational
+          and informational purposes only. It is not a substitute for
+          professional medical advice, diagnosis, or treatment. Always seek
+          the guidance of a qualified healthcare professional regarding
+          your individual health needs.
+        </p>
+      </aside>
+
+      <div class="md-content">
+
+        <section aria-labelledby="md-education">
+          <h2 id="md-education">1. Educational Information Only</h2>
+          <p>
+            Articles, guides, explanations, recommendations, and other materials
+            on MaxProHealth are intended to provide general information about
+            health, nutrition, supplements, fitness, beauty, and wellness.
+          </p>
+          <p>
+            Our content is not intended to diagnose, treat, cure, or prevent
+            any disease or medical condition. Information that is suitable
+            for one person may not be appropriate for another.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-no-medical-advice">
+          <h2 id="md-no-medical-advice">2. No Doctor–Patient Relationship</h2>
+          <p>
+            Using this website, reading its content, or communicating through
+            its contact form does not establish a doctor–patient relationship
+            or create a professional healthcare relationship with MaxProHealth.
+          </p>
+          <p>
+            MaxProHealth does not provide individualized medical consultations,
+            diagnoses, prescriptions, or treatment plans through this website.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-professional">
+          <h2 id="md-professional">3. Consult a Qualified Healthcare Professional</h2>
+          <p>
+            Always consult a qualified healthcare professional before making
+            decisions that could affect your health, particularly if you:
+          </p>
+          <ul>
+            <li>Have a diagnosed medical condition or ongoing symptoms.</li>
+            <li>Take prescription medicines or over-the-counter medications.</li>
+            <li>Are considering starting, stopping, or changing a treatment.</li>
+            <li>Are pregnant, breastfeeding, or planning a pregnancy.</li>
+            <li>Are considering dietary changes, supplements, or a new exercise program that may affect an existing condition.</li>
+          </ul>
+          <p>
+            Never disregard professional medical advice or delay seeking it
+            because of something you have read on this website.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-emergency">
+          <h2 id="md-emergency">4. Medical Emergencies</h2>
+          <p>
+            MaxProHealth is not an emergency medical service and does not
+            provide urgent medical care.
+          </p>
+          <p>
+            If you believe you are experiencing a medical emergency, seek
+            immediate assistance from your local emergency services or go
+            to the nearest appropriate emergency department. Do not wait for
+            a response through our contact form.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-accuracy">
+          <h2 id="md-accuracy">5. Accuracy and Completeness</h2>
+          <p>
+            We aim to present information responsibly and make reasonable
+            efforts to keep published content useful and accurate. However,
+            health knowledge, scientific evidence, product formulations,
+            recommendations, and applicable guidance may change over time.
+          </p>
+          <p>
+            We do not guarantee that all information on the website will
+            always be complete, current, accurate, or suitable for every
+            individual or situation.
+          </p>
+          <p>
+            Readers should verify important health information with qualified
+            healthcare professionals and appropriate authoritative sources
+            before relying on it.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-products">
+          <h2 id="md-products">6. Products, Supplements, and Wellness Resources</h2>
+          <p>
+            MaxProHealth may publish educational content about vitamins,
+            minerals, dietary supplements, nutrition products, fitness
+            products, beauty products, and other wellness resources.
+          </p>
+          <p>
+            Product descriptions and related information are provided for
+            general informational purposes. They should not be interpreted
+            as a guarantee of safety, effectiveness, quality, or suitability
+            for a particular person.
+          </p>
+          <p>
+            Product ingredients, directions, warnings, availability, and
+            formulations may change. Before using a product, read its current
+            label and instructions and consult a qualified healthcare
+            professional when appropriate.
+          </p>
+          <p>
+            The inclusion of a product or resource on this website does not
+            constitute a personalized medical recommendation or a guarantee
+            of a particular health outcome.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-supplements">
+          <h2 id="md-supplements">7. Supplements and Medication Interactions</h2>
+          <p>
+            Natural ingredients, vitamins, minerals, herbal products, and
+            dietary supplements can cause side effects or interact with
+            medications and existing medical conditions. Natural does not
+            necessarily mean safe for everyone.
+          </p>
+          <p>
+            Do not replace prescribed medication with a supplement or change
+            your prescribed dosage based on information found on this website.
+            Ask a qualified healthcare professional or pharmacist about
+            possible interactions, appropriate dosages, and individual risks.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-results">
+          <h2 id="md-results">8. Individual Results May Vary</h2>
+          <p>
+            Health and wellness outcomes differ from person to person.
+            Factors such as age, genetics, medical history, lifestyle,
+            medications, diet, and other circumstances may affect results.
+          </p>
+          <p>
+            Any examples, experiences, product descriptions, or discussions
+            of potential benefits on this website should not be interpreted
+            as a promise or guarantee that you will achieve similar results.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-external">
+          <h2 id="md-external">9. External Websites and Third-Party Content</h2>
+          <p>
+            Our website may reference or link to external websites, publishers,
+            product providers, or other third-party resources for additional
+            information or convenience.
+          </p>
+          <p>
+            We do not control all third-party content and cannot guarantee
+            its accuracy, completeness, availability, or suitability.
+            Visiting an external website or purchasing a third-party product
+            is your decision, and you should review the relevant provider's
+            information and policies.
+          </p>
+          <p>
+            A link to an external resource does not, by itself, mean that
+            MaxProHealth independently verifies or guarantees every statement
+            made by that resource.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-responsibility">
+          <h2 id="md-responsibility">10. Your Responsibility</h2>
+          <p>
+            You are responsible for how you interpret and use information
+            obtained from MaxProHealth. You should consider your individual
+            circumstances and obtain appropriate professional advice before
+            making decisions that may affect your health.
+          </p>
+          <p>
+            To the extent permitted by applicable law, MaxProHealth disclaims
+            responsibility for decisions or actions taken solely on the basis
+            of general website information without appropriate professional
+            guidance. Nothing in this disclaimer excludes or limits any
+            liability that cannot lawfully be excluded or limited.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-changes">
+          <h2 id="md-changes">11. Changes to This Disclaimer</h2>
+          <p>
+            We may update this Medical Disclaimer when our website, content,
+            practices, or applicable requirements change. Updates will be
+            published on this page. We encourage visitors to review this
+            page periodically.
+          </p>
+        </section>
+
+        <section aria-labelledby="md-contact">
+          <h2 id="md-contact">12. Questions About This Disclaimer</h2>
+          <p>
+            If you have questions about this Medical Disclaimer or the
+            informational content published on MaxProHealth, please use
+            our website contact form.
+          </p>
+          <p>
+            Please do not use the contact form to request emergency
+            assistance, diagnoses, prescriptions, or individualized medical
+            treatment.
+          </p>
+
+          <div class="md-contact">
+            <h2>Contact MaxProHealth</h2>
+            <p>
+              For general website questions, please visit our Contact page
+              and submit the contact form.
+            </p>
+            <a class="md-contact-link" href="/contact">
+              Go to Contact Form
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </section>
+
+      </div>
+
+      <p class="md-updated">
+        <strong>Page:</strong> Medical Disclaimer
+        <span aria-hidden="true"> · </span>
+        <strong>Website:</strong> MaxProHealth
+      </p>
+
+    </article>
+  </main>
+
+  <!-- Shared global footer -->
+  <div id="mxp-footer-placeholder">
+    <div class="md-loading" role="status">Loading footer…</div>
+  </div>
+
+  <!-- Shared scroll-to-top component -->
+  <div id="mxp-scroll-top-placeholder"></div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /*
+       * Shared component loader.
+       * Loads the existing global header, footer, and scroll-to-top files.
+       * Component styles are copied into the current document.
+       * Scripts embedded in loaded components are re-created so that
+       * their initialization code can execute.
+       */
+
+      const components = [
+        {
+          url: "header.html",
+          placeholder: "mxp-header-placeholder"
+        },
+        {
+          url: "footer.html",
+          placeholder: "mxp-footer-placeholder"
+        },
+        {
+          url: "scroll-top.html",
+          placeholder: "mxp-scroll-top-placeholder"
+        }
+      ];
+
+      function copyStyles(sourceDocument) {
+        sourceDocument.querySelectorAll(
+          'style, link[rel="stylesheet"]'
+        ).forEach(function (source) {
+          const clone = source.cloneNode(true);
+
+          if (
+            clone.tagName === "LINK" &&
+            clone.getAttribute("href")
+          ) {
+            clone.href = new URL(
+              clone.getAttribute("href"),
+              window.location.href
+            ).href;
+          }
+
+          document.head.appendChild(clone);
+        });
+      }
+
+      function executeScripts(container) {
+        const scripts = Array.from(
+          container.querySelectorAll("script")
+        );
+
+        scripts.forEach(function (oldScript) {
+          const newScript = document.createElement("script");
+
+          Array.from(oldScript.attributes).forEach(function (attribute) {
+            newScript.setAttribute(attribute.name, attribute.value);
+          });
+
+          if (oldScript.src) {
+            newScript.src = new URL(
+              oldScript.getAttribute("src"),
+              window.location.href
+            ).href;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+
+          oldScript.replaceWith(newScript);
+        });
+      }
+
+      async function loadComponent(component) {
+        const placeholder = document.getElementById(
+          component.placeholder
+        );
+
+        if (!placeholder) {
+          return;
+        }
+
+        try {
+          const response = await fetch(component.url, {
+            cache: "no-cache",
+            credentials: "same-origin"
+          });
+
+          if (!response.ok) {
+            throw new Error(
+              "Unable to load " + component.url +
+              " (HTTP " + response.status + ")"
+            );
+          }
+
+          const html = await response.text();
+          const parsed = new DOMParser().parseFromString(
+            html,
+            "text/html"
+          );
+
+          copyStyles(parsed);
+
+          const sourceBody = parsed.body;
+          const wrapper = document.createElement("div");
+
+          wrapper.innerHTML = sourceBody.innerHTML;
+
+          /*
+           * Preserve the shared footer's original .mxp-footer wrapper
+           * and the existing component markup.
+           */
+          placeholder.replaceWith(wrapper);
+
+          executeScripts(wrapper);
+
+        } catch (error) {
+          console.error(
+            "[MaxProHealth] Component loading error:",
+            component.url,
+            error
+          );
+
+          placeholder.replaceChildren();
+
+          if (component.url === "header.html") {
+            const fallback = document.createElement("p");
+            fallback.className = "md-loading";
+            fallback.textContent =
+              "Navigation could not be loaded. " +
+              "Please use the links below.";
+
+            const nav = document.createElement("nav");
+            nav.setAttribute("aria-label", "Main navigation");
+
+            [
+              ["Home", "/"],
+              ["Health", "/health"],
+              ["Products", "/products"],
+              ["K-Beauty", "/k-beauty"],
+              ["Contact", "/contact"]
+            ].forEach(function (item) {
+              const link = document.createElement("a");
+              link.href = item[1];
+              link.textContent = item[0];
+              link.style.marginRight = "14px";
+              nav.appendChild(link);
+            });
+
+            placeholder.append(fallback, nav);
+          } else if (component.url === "footer.html") {
+            const fallback = document.createElement("p");
+            fallback.className = "md-loading";
+            fallback.textContent =
+              "Footer information is temporarily unavailable.";
+
+            placeholder.appendChild(fallback);
+          }
+        }
+      }
+
+      async function initializeComponents() {
+        /*
+         * Load the components in sequence to preserve predictable
+         * script execution and reduce race conditions.
+         */
+        for (const component of components) {
+          await loadComponent(component);
+        }
+
+        /*
+         * Update the year if the shared footer uses #mxpYear.
+         */
+        const year = document.getElementById("mxpYear");
+
+        if (year) {
+          year.textContent = String(new Date().getFullYear());
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          initializeComponents,
+          { once: true }
+        );
+      } else {
+        initializeComponents();
+      }
+    })();
+  </script>
+
+</body>
+</html>

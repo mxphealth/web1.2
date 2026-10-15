@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon & app icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<title>Thank You | MaxproHealth</title>
+
+<meta name="description" content="Thank you for contacting MaxproHealth. Your message has been received.">
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="MaxproHealth">
+<meta name="theme-color" content="#16845b">
+
+<style>
+:root {
+  --ty-bg: #f6f9f7;
+  --ty-surface: #ffffff;
+  --ty-text: #17231e;
+  --ty-muted: #64736c;
+  --ty-border: #dbe5e0;
+  --ty-accent: #16845b;
+  --ty-accent-dark: #0d6846;
+  --ty-accent-soft: #e4f4ec;
+}
+
+html.dark {
+  --ty-bg: #0f1613;
+  --ty-surface: #16201c;
+  --ty-text: #f1f6f3;
+  --ty-muted: #a5b1ab;
+  --ty-border: #293631;
+  --ty-accent: #40c88d;
+  --ty-accent-dark: #59d79e;
+  --ty-accent-soft: #1b2e26;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ty-bg);
+  color: var(--ty-text);
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+}
+
+main {
+  min-height: calc(100vh - 74px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 16px;
+}
+
+.ty-card {
+  width: min(640px, 100%);
+  padding: 48px 40px;
+  text-align: center;
+  background: var(--ty-surface);
+  border: 1px solid var(--ty-border);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(20, 45, 35, 0.08);
+}
+
+.ty-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ty-accent-soft);
+  color: var(--ty-accent);
+}
+
+.ty-icon svg { width: 36px; height: 36px; }
+
+.ty-card h1 {
+  margin: 0 0 14px;
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  line-height: 1.2;
+}
+
+.ty-card p {
+  margin: 0 auto 14px;
+  max-width: 480px;
+  color: var(--ty-muted);
+}
+
+.ty-actions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ty-button {
+  display: inline-block;
+  padding: 13px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--ty-accent);
+  background: var(--ty-accent);
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.ty-button:hover {
+  background: var(--ty-accent-dark);
+  border-color: var(--ty-accent-dark);
+}
+
+.ty-button.secondary {
+  background: transparent;
+  color: var(--ty-accent);
+}
+
+.ty-button.secondary:hover {
+  background: var(--ty-accent-soft);
+  border-color: var(--ty-accent);
+}
+
+.ty-button:focus-visible {
+  outline: 3px solid var(--ty-accent);
+  outline-offset: 3px;
+}
+
+.ty-note {
+  margin-top: 28px !important;
+  padding-top: 20px;
+  border-top: 1px solid var(--ty-border);
+  font-size: 0.88rem;
+}
+
+.ty-note a { color: var(--ty-accent); }
+
+@media (max-width: 560px) {
+  .ty-card { padding: 36px 22px; }
+  .ty-button { width: 100%; text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Global header (header.html) -->
+<div id="mxp-global-header"></div>
+
+<main id="thank-you-main">
+  <section class="ty-card" aria-labelledby="ty-title">
+
+    <div class="ty-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12.5l4.5 4.5L19 7.5"/>
+      </svg>
+    </div>
+
+    <h1 id="ty-title">Thank you for contacting us</h1>
+
+    <p>
+      Your message has been sent to MaxproHealth. We have received your
+      inquiry and will review it as soon as possible.
+    </p>
+
+    <p>
+      If a reply is needed, we will respond to the email address you provided.
+    </p>
+
+    <div class="ty-actions">
+      <a class="ty-button" href="/">Back to Home</a>
+      <a class="ty-button secondary" href="/health">Health Guides</a>
+      <a class="ty-button secondary" href="/products">Explore Products</a>
+    </div>
+
+    <p class="ty-note">
+      MaxproHealth shares general information only and cannot give personal
+      medical advice. See our <a href="/medical-disclaimer">Medical Disclaimer</a>.
+    </p>
+
+  </section>
+</main>
+
+<!-- Global footer (footer.html) -->
+<div id="mxp-global-footer"></div>
+
+<!-- Global Scroll-to-top (scroll-top.html) -->
+<div id="mxp-scroll-top-container"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  function loadPart(url, targetId) {
+    var target = document.getElementById(targetId);
+    if (!target) return Promise.resolve();
+
+    return fetch(url, { credentials: "same-origin" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        return response.text();
+      })
+      .then(function (html) {
+        var parsed = new DOMParser().parseFromString(html, "text/html");
+
+        parsed.querySelectorAll("style").forEach(function (style) {
+          var copy = document.createElement("style");
+          copy.textContent = style.textContent;
+          document.head.appendChild(copy);
+          style.remove();
+        });
+
+        var scripts = Array.from(parsed.querySelectorAll("script"));
+        scripts.forEach(function (script) { script.remove(); });
+
+        target.innerHTML = parsed.body.innerHTML;
+
+        scripts.forEach(function (old) {
+          var fresh = document.createElement("script");
+          fresh.textContent = old.textContent;
+          target.appendChild(fresh);
+        });
+      })
+      .catch(function (error) {
+        console.error("MaxproHealth: could not load " + url, error);
+      });
+  }
+
+  loadPart("/header.html", "mxp-global-header");
+  loadPart("/footer.html", "mxp-global-footer");
+  loadPart("/scroll-top.html", "mxp-scroll-top-container");
+})();
+</script>
+
+</body>
+</html>

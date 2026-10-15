@@ -1,0 +1,13 @@
+{
+  "name": "MaxproHealth",
+  "short_name": "MaxproHealth",
+  "description": "Health information, wellness guides, products, and K-Beauty resources.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16845b",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

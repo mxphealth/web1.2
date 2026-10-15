@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicon & app icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <meta name="robots" content="noindex, nofollow">
+  <title>Redirecting…</title>
+  <style>
+    body{font-family:system-ui,Arial,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;color:#64736c;background:#f3f7f5;text-align:center}
+    a{color:#16845b}
+  </style>
+</head>
+<body>
+  <p id="msg">Redirecting…</p>
+
+  <script>
+  (function () {
+    "use strict";
+
+    // Published Google Sheet (tab "products") as CSV
+    var SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd5A8sZ0ttf4fB--kQLbqJMK8ZJGIH4aPFpMoKY56Kqq8nZImezdkQppmHPlQT69jLDB8iFl6c5Tt3/pub?gid=0&single=true&output=csv";
+
+    var msg = document.getElementById("msg");
+
+    function fail() {
+      msg.innerHTML = 'This link could not be found. <a href="/products">Back to products</a>';
+    }
+
+    function slugify(s) {
+      return String(s || "").toLowerCase()
+        .replace(/\u00df/g, "ss")
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    }
+
+    function norm(s) {
+      return String(s || "").toLowerCase().replace(/\s+/g, " ").trim();
+    }
+
+    function parseCSV(text) {
+      var rows = [], row = [], field = "", quoted = false, i, ch;
+      text = String(text || "").replace(/^\uFEFF/, "");
+      for (i = 0; i < text.length; i++) {
+        ch = text[i];
+        if (quoted) {
+          if (ch === '"') {
+            if (text[i + 1] === '"') { field += '"'; i++; }
+            else quoted = false;
+          } else { field += ch; }
+        } else if (ch === '"') {
+          quoted = true;
+        } else if (ch === ",") {
+          row.push(field); field = "";
+        } else if (ch === "\n" || ch === "\r") {
+          if (ch === "\r" && text[i + 1] === "\n") i++;
+          row.push(field); field = ""; rows.push(row); row = [];
+        } else { field += ch; }
+      }
+      if (field !== "" || row.length) { row.push(field); rows.push(row); }
+      rows = rows.filter(function (r) {
+        return r.some(function (x) { return String(x).trim() !== ""; });
+      });
+      if (!rows.length) return [];
+      var head = rows[0].map(function (h) { return String(h).trim().toLowerCase(); });
+      return rows.slice(1).map(function (r) {
+        var o = {};
+        head.forEach(function (h, k) { o[h] = r[k] == null ? "" : String(r[k]).trim(); });
+        return o;
+      });
+    }
+
+    // The product name part of the address: /products/<slug>
+    var parts = window.location.pathname.split("/").filter(Boolean);
+    var slug = "";
+    try { slug = decodeURIComponent(parts[parts.length - 1] || "").toLowerCase(); } catch (e) {}
+    if (!slug) { fail(); return; }
+
+    fetch(SHEET_CSV_URL, { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("Sheet unavailable");
+        return res.text();
+      })
+      .then(function (text) {
+        var rows = parseCSV(text), target = "", i, r, u;
+        for (i = 0; i < rows.length; i++) {
+          r = rows[i];
+          if (norm(r.status) !== "live" || !r.name) continue;
+          if (slugify(r.name) !== slug) continue;
+          try {
+            u = new URL(r.affiliate_link);
+            if (u.protocol === "https:" || u.protocol === "http:") target = u.href;
+          } catch (e) {}
+          break;
+        }
+        if (!target) { fail(); return; }
+        window.location.replace(target);
+      })
+      .catch(fail);
+  })();
+  </script>
+</body>
+</html>

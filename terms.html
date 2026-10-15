@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon & app icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+
+<title>Terms of Use | MaxproHealth</title>
+<meta name="description" content="Read the MaxproHealth Terms of Use to understand the conditions, responsibilities, and limitations that apply when using this website.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://maxprohealth.pages.dev/terms">
+<meta name="theme-color" content="#ffffff">
+
+<script>
+(function () {
+  try {
+    var root = document.documentElement;
+    var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    var keys = ["theme", "color-theme", "colorScheme", "color-scheme", "darkMode", "dark-mode", "mxp-theme", "mxp-theme-mode"];
+    var saved = null;
+    for (var i = 0; i < keys.length; i++) {
+      var v = localStorage.getItem(keys[i]);
+      if (v) { saved = String(v).toLowerCase(); break; }
+    }
+
+    /* FIX: when nothing is saved, follow the system preference (same as the header does),
+       so the page background is dark from the first paint instead of flashing light. */
+    var isDark = saved
+      ? (saved === "dark" || saved === "true" || (saved === "system" && prefersDark))
+      : prefersDark;
+
+    /* FIX: only the "dark" class is used, because it is the one class the header's theme
+       button adds and removes. The old extra "dark-mode" class and data-theme="dark"
+       attribute were never removed by the button, so they could keep the page stuck dark. */
+    if (isDark) {
+      root.classList.add("dark");
+    }
+
+    /* FIX: keep the browser/mobile bar color in step with the theme. */
+    var syncThemeColor = function () {
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) {
+        meta.setAttribute("content", root.classList.contains("dark") ? "#0e1512" : "#ffffff");
+      }
+    };
+    syncThemeColor();
+    if (window.MutationObserver) {
+      new MutationObserver(syncThemeColor).observe(root, { attributes: true, attributeFilter: ["class"] });
+    }
+  } catch (e) {}
+})();
+</script>
+
+<style>
+:root {
+  color-scheme: light;
+  --terms-bg: #ffffff;
+  --terms-text: #263238;
+  --terms-heading: #173f35;
+  --terms-muted: #5e6b66;
+  --terms-border: #e2e8e5;
+  --terms-panel: #f5f8f6;
+  --terms-link: #167451;
+}
+
+html.dark,
+html.dark-mode,
+html[data-theme="dark"],
+body.dark,
+body.dark-mode,
+body[data-theme="dark"] {
+  color-scheme: dark;
+  --terms-bg: #0e1512;
+  --terms-text: #dbe5e0;
+  --terms-heading: #e6f2ea;
+  --terms-muted: #9aa8a1;
+  --terms-border: #263029;
+  --terms-panel: #16201b;
+  --terms-link: #5ecf9c;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  /* FIX: paint the page background on <html> too, so it always follows the theme. */
+  background: var(--terms-bg) !important;
+}
+
+body {
+  margin: 0;
+  /* FIX: !important so styles injected later by the shared header/footer cannot override it. */
+  background: var(--terms-bg) !important;
+  color: var(--terms-text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.terms-main {
+  width: min(100% - 36px, 900px);
+  margin: 0 auto;
+  padding: 54px 0 76px;
+  background: var(--terms-bg);
+}
+
+.terms-header {
+  margin-bottom: 34px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--terms-border);
+}
+
+.terms-eyebrow {
+  margin: 0 0 8px;
+  color: var(--terms-link);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.terms-header h1 {
+  margin: 0 0 12px;
+  color: var(--terms-heading);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+.terms-intro {
+  max-width: 760px;
+  margin: 0;
+  color: var(--terms-muted);
+  font-size: 1.05rem;
+}
+
+.terms-updated {
+  margin: 18px 0 0;
+  color: var(--terms-muted);
+  font-size: 0.9rem;
+}
+
+.terms-section {
+  margin-top: 30px;
+}
+
+.terms-section h2 {
+  margin: 0 0 10px;
+  color: var(--terms-heading);
+  font-size: clamp(1.2rem, 3vw, 1.45rem);
+  line-height: 1.4;
+}
+
+.terms-section p {
+  margin: 0 0 14px;
+}
+
+.terms-section ul {
+  margin: 10px 0 16px;
+  padding-left: 24px;
+}
+
+.terms-section li {
+  margin: 6px 0;
+}
+
+.terms-section a {
+  color: var(--terms-link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.terms-section a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.terms-notice {
+  margin-top: 34px;
+  padding: 20px 22px;
+  border: 1px solid var(--terms-border);
+  border-left: 4px solid var(--terms-link);
+  border-radius: 8px;
+  background: var(--terms-panel);
+}
+
+.terms-notice p {
+  margin: 0;
+}
+
+.terms-footer-note {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--terms-border);
+  color: var(--terms-muted);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 600px) {
+  .terms-main {
+    width: calc(100% - 28px);
+    padding: 36px 0 52px;
+  }
+
+  .terms-header {
+    margin-bottom: 26px;
+    padding-bottom: 22px;
+  }
+
+  .terms-section {
+    margin-top: 25px;
+  }
+
+  .terms-notice {
+    padding: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="mxp-header-placeholder"></div>
+
+<main class="terms-main">
+  <header class="terms-header">
+    <p class="terms-eyebrow">Website Policies</p>
+
+    <h1>Terms of Use</h1>
+
+    <p class="terms-intro">
+      These Terms of Use explain the conditions that apply when you access
+      or use MaxproHealth. Please read them carefully before using this website.
+    </p>
+
+    <p class="terms-updated">Last updated: October 2026</p>
+  </header>
+
+  <section class="terms-section">
+    <h2>1. Acceptance of These Terms</h2>
+    <p>
+      By accessing or using MaxproHealth, you agree to these Terms of Use
+      and any applicable laws and regulations. If you do not agree with
+      these terms, please discontinue use of the website.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>2. Website Purpose</h2>
+    <p>
+      MaxproHealth provides general educational information and resources
+      relating to health, wellness, nutrition, supplements, fitness,
+      skincare, and related topics. The website may also present products
+      and services offered by third parties.
+    </p>
+    <p>
+      Website content may be updated, changed, or removed at any time
+      without prior notice.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>3. No Medical Advice</h2>
+    <p>
+      The information provided on MaxproHealth is for general informational
+      and educational purposes only. It is not intended to replace
+      professional medical advice, diagnosis, or treatment.
+    </p>
+    <p>
+      Always seek guidance from a qualified healthcare professional
+      regarding medical conditions, symptoms, medications, dietary
+      supplements, or changes to your health routine. Never disregard
+      professional medical advice or delay seeking it because of
+      information found on this website.
+    </p>
+    <p>
+      Do not start, stop, or change prescribed medication or treatment
+      based solely on website content.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>4. Accuracy and Availability of Information</h2>
+    <p>
+      We aim to provide useful and understandable information, but we do
+      not guarantee that all content is complete, accurate, current, or
+      suitable for every individual or situation.
+    </p>
+    <p>
+      Health-related research, recommendations, product formulations,
+      prices, availability, and third-party information can change.
+      You are responsible for evaluating information and confirming
+      relevant details with appropriate professionals or providers.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>5. Third-Party Products and Services</h2>
+    <p>
+      MaxproHealth may feature, describe, or link to products, services,
+      and websites operated by third parties. We do not control those
+      third parties and cannot guarantee their content, availability,
+      quality, safety, or practices.
+    </p>
+    <p>
+      Any purchase, subscription, registration, or other transaction
+      with a third party is between you and that provider. Review the
+      provider's terms, privacy policy, product details, pricing,
+      refund conditions, and other applicable information before
+      proceeding.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>6. Affiliate Relationships</h2>
+    <p>
+      Some links on MaxproHealth may be affiliate links. This means we
+      may receive a commission if you make a qualifying purchase through
+      certain links, at no additional cost to you unless otherwise stated.
+    </p>
+    <p>
+      Affiliate relationships do not guarantee a product's suitability,
+      effectiveness, or quality. Product information should be evaluated
+      independently, and purchasing decisions remain your responsibility.
+    </p>
+    <p>
+      For further information, please review our
+      <a href="/affiliate-disclosure">Affiliate Disclosure</a>.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>7. Acceptable Use</h2>
+    <p>
+      You agree to use MaxproHealth lawfully and responsibly. You must not:
+    </p>
+    <ul>
+      <li>Use the website for unlawful, fraudulent, or harmful purposes.</li>
+      <li>Attempt to gain unauthorized access to the website or its systems.</li>
+      <li>Interfere with the website's operation, security, or availability.</li>
+      <li>Introduce malicious code or attempt to compromise website security.</li>
+      <li>Copy, republish, distribute, or commercially exploit website content without appropriate authorization, except where permitted by law.</li>
+      <li>Misrepresent information or use the website in a way that infringes another person's rights.</li>
+    </ul>
+  </section>
+
+  <section class="terms-section">
+    <h2>8. Intellectual Property</h2>
+    <p>
+      Unless otherwise stated, the original text, design, graphics, branding,
+      and other materials on MaxproHealth are protected by applicable
+      intellectual property laws.
+    </p>
+    <p>
+      You may access and use website content for personal, non-commercial
+      purposes. You may not reproduce, modify, republish, distribute, or
+      commercially exploit protected materials without permission, except
+      where applicable law allows it.
+    </p>
+    <p>
+      Third-party names, trademarks, logos, and product materials remain
+      the property of their respective owners.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>9. Privacy</h2>
+    <p>
+      Your use of MaxproHealth may involve the handling of information
+      according to the website's applicable privacy practices. Please
+      review our <a href="/privacy-policy">Privacy Policy</a> to understand
+      how information may be collected, used, and managed.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>10. Disclaimer of Warranties</h2>
+    <p>
+      To the extent permitted by applicable law, MaxproHealth is provided
+      on an "as is" and "as available" basis without warranties of any kind,
+      whether express or implied.
+    </p>
+    <p>
+      We do not guarantee uninterrupted access, error-free operation,
+      complete accuracy, or that the website will be free from harmful
+      components. Nothing in these terms excludes a warranty or right
+      that cannot lawfully be excluded.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>11. Limitation of Liability</h2>
+    <p>
+      To the extent permitted by applicable law, MaxproHealth will not be
+      liable for indirect, incidental, special, consequential, or punitive
+      losses arising from or related to your use of, or inability to use,
+      this website.
+    </p>
+    <p>
+      This includes reliance on website content, third-party products or
+      services, external websites, or transactions conducted with third
+      parties. Nothing in these terms limits liability where such
+      limitation is prohibited by applicable law.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>12. External Links</h2>
+    <p>
+      Links to external websites are provided for convenience and
+      informational purposes. Their inclusion does not necessarily mean
+      that MaxproHealth endorses the external website, its operator,
+      or its content.
+    </p>
+    <p>
+      You access third-party websites at your own discretion and should
+      review their applicable policies and terms.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>13. Changes to These Terms</h2>
+    <p>
+      We may revise these Terms of Use from time to time. Changes will
+      be reflected on this page, along with an updated revision date
+      where appropriate.
+    </p>
+    <p>
+      Your continued use of the website after revised terms are posted
+      constitutes acceptance of those changes to the extent permitted
+      by applicable law.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>14. Governing Law</h2>
+    <p>
+      These Terms of Use are subject to applicable laws. Any dispute
+      relating to the website or these terms will be handled under
+      the laws and jurisdiction that apply to the relevant circumstances,
+      subject to any mandatory legal protections.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>15. Severability</h2>
+    <p>
+      If any provision of these terms is found to be unlawful, invalid,
+      or unenforceable, the remaining provisions will continue in effect
+      to the extent permitted by applicable law.
+    </p>
+  </section>
+
+  <section class="terms-section">
+    <h2>16. Contact and Questions</h2>
+    <p>
+      If you have questions about these Terms of Use, please use the
+      available contact options on the MaxproHealth website.
+    </p>
+  </section>
+
+  <aside class="terms-notice">
+    <p>
+      <strong>Important:</strong> By continuing to use MaxproHealth,
+      you acknowledge that you have read and understood these Terms of Use.
+      These terms should be interpreted subject to applicable law and
+      any rights that cannot legally be waived or limited.
+    </p>
+  </aside>
+
+  <p class="terms-footer-note">
+    These Terms of Use apply to your access to and use of the MaxproHealth
+    website. Please review this page periodically for updates.
+  </p>
+</main>
+
+<div id="mxp-footer-placeholder"></div>
+<div id="mxp-scroll-top-placeholder"></div>
+
+<script>
+async function loadSharedComponent(url, placeholderId, componentSelector) {
+  const placeholder = document.getElementById(placeholderId);
+  if (!placeholder) return;
+
+  try {
+    const response = await fetch(url, { credentials: "same-origin" });
+
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
+
+    const source = await response.text();
+    const parsed = new DOMParser().parseFromString(source, "text/html");
+
+    parsed.querySelectorAll("style").forEach(style => {
+      document.head.appendChild(style.cloneNode(true));
+    });
+
+    const component = componentSelector
+      ? parsed.querySelector(componentSelector)
+      : parsed.body;
+
+    if (!component) {
+      throw new Error("Component markup was not found in " + url);
+    }
+
+    const scripts = Array.from(component.querySelectorAll("script"));
+    scripts.forEach(script => script.remove());
+
+    if (component === parsed.body) {
+      const fragment = document.createDocumentFragment();
+
+      Array.from(parsed.body.children).forEach(child => {
+        if (child.tagName !== "SCRIPT" && child.tagName !== "STYLE") {
+          fragment.appendChild(child.cloneNode(true));
+        }
+      });
+
+      placeholder.replaceWith(fragment);
+    } else {
+      component.querySelectorAll("style").forEach(style => style.remove());
+      placeholder.replaceWith(component.cloneNode(true));
+    }
+
+    scripts.forEach(oldScript => {
+      const activeScript = document.createElement("script");
+
+      if (oldScript.src) {
+        activeScript.src = oldScript.src;
+      } else {
+        activeScript.textContent = oldScript.textContent;
+      }
+
+      document.body.appendChild(activeScript);
+    });
+  } catch (error) {
+    console.error("MaxproHealth: could not load " + url, error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+  await loadSharedComponent(
+    "header.html",
+    "mxp-header-placeholder",
+    null
+  );
+
+  await loadSharedComponent(
+    "footer.html",
+    "mxp-footer-placeholder",
+    ".mxp-footer"
+  );
+
+  await loadSharedComponent(
+    "scroll-top.html",
+    "mxp-scroll-top-placeholder",
+    null
+  );
+});
+</script>
+
+</body>
+</html>

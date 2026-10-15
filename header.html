@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MaxproHealth</title>
+
+<style>
+:root {
+  --header-bg: rgba(255, 255, 255, 0.96);
+  --header-border: #e5ebe8;
+  --text: #17231e;
+  --muted: #64736c;
+  --accent: #16845b;
+  --accent-dark: #0d6846;
+  --surface: #f3f7f5;
+  --menu-bg: #ffffff;
+  --shadow: 0 12px 35px rgba(20, 45, 35, 0.10);
+}
+
+html.dark {
+  --header-bg: rgba(15, 22, 19, 0.97);
+  --header-border: #293631;
+  --text: #f1f6f3;
+  --muted: #a5b1ab;
+  --accent: #40c88d;
+  --accent-dark: #59d79e;
+  --surface: #18211d;
+  --menu-bg: #111815;
+  --shadow: 0 12px 35px rgba(0, 0, 0, 0.30);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 74px;
+}
+
+.mxp-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.mxp-header-inner {
+  width: min(1200px, calc(100% - 32px));
+  min-height: 74px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+/* Brand */
+
+.mxp-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 1.34rem;
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+
+.mxp-logo-img {
+  display: block;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+/* Navigation */
+
+.mxp-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mxp-nav a {
+  position: relative;
+  padding: 10px 13px;
+  color: var(--muted);
+  text-decoration: none;
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 9px;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.mxp-nav a:hover,
+.mxp-nav a.active {
+  color: var(--accent);
+  background: var(--surface);
+}
+
+/* Controls */
+
+.mxp-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mxp-control {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--header-border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-family: inherit;
+  font-size: 1rem;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.mxp-control:hover {
+  background: var(--surface);
+  border-color: rgba(22, 132, 91, 0.35);
+}
+
+/* Language */
+
+.mxp-language {
+  position: relative;
+}
+
+.mxp-language-button {
+  min-width: 70px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--header-border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.mxp-language-menu {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  width: 165px;
+  padding: 7px;
+  margin: 0;
+  list-style: none;
+  background: var(--menu-bg);
+  border: 1px solid var(--header-border);
+  border-radius: 13px;
+  box-shadow: var(--shadow);
+  display: none;
+}
+
+.mxp-language-menu.open {
+  display: block;
+}
+
+.mxp-language-menu button {
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    sans-serif;
+  font-size: 0.88rem;
+}
+
+.mxp-language-menu button:hover {
+  background: var(--surface);
+  color: var(--accent);
+}
+
+/* Mobile menu */
+
+.mxp-menu-button {
+  display: none;
+}
+
+@media (max-width: 1020px) {
+
+  body {
+    padding-top: 68px;
+  }
+
+  .mxp-header-inner {
+    min-height: 68px;
+  }
+
+  .mxp-nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 16px;
+    right: 16px;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--menu-bg);
+    border: 1px solid var(--header-border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .mxp-nav.open {
+    display: flex;
+  }
+
+  .mxp-nav a {
+    padding: 12px 14px;
+  }
+
+  .mxp-menu-button {
+    display: grid;
+  }
+}
+
+@media (max-width: 560px) {
+
+  .mxp-header-inner {
+    width: min(100% - 20px, 1200px);
+    gap: 6px;
+  }
+
+  .mxp-logo {
+    font-size: 1.16rem;
+  }
+
+  .mxp-logo-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mxp-actions {
+    gap: 5px;
+  }
+
+  .mxp-control {
+    width: 37px;
+    height: 37px;
+  }
+
+  .mxp-language-button {
+    min-width: 57px;
+    height: 37px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mxp-nav a,
+  .mxp-control {
+    transition: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="mxp-header" role="banner">
+
+  <div class="mxp-header-inner">
+
+    <a
+      class="mxp-logo"
+      href="/"
+      aria-label="MaxproHealth Home">
+
+      <picture>
+        <source type="image/webp" srcset="/logo-96.webp 1x, /logo-192.webp 2x">
+        <img
+          class="mxp-logo-img"
+          src="/logo-96.png"
+          srcset="/logo-96.png 1x, /logo-192.png 2x"
+          width="44"
+          height="44"
+          alt=""
+          decoding="async">
+      </picture>
+
+      <span>MaxproHealth</span>
+
+    </a>
+
+    <nav
+      class="mxp-nav"
+      id="mxpMainNav"
+      aria-label="Main navigation">
+
+      <a href="/" data-page="index">Home</a>
+
+      <a href="/health" data-page="health">Health</a>
+
+      <a href="/health-tools" data-page="health-tools">Health Tools</a>
+
+      <a href="/medical-services" data-page="medical-services">Medical Services</a>
+
+      <a href="/products" data-page="products">Products</a>
+
+      <a href="/k-beauty" data-page="k-beauty">K-Beauty</a>
+
+      <a href="/contact" data-page="contact">Contact</a>
+
+    </nav>
+
+    <div class="mxp-actions">
+
+      <div class="mxp-language">
+
+        <button
+          class="mxp-language-button"
+          id="mxpLanguageButton"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mxpLanguageMenu">
+          EN ▾
+        </button>
+
+        <ul
+          class="mxp-language-menu"
+          id="mxpLanguageMenu">
+
+          <li>
+            <button type="button" data-lang="en">
+              🇺🇸 English
+            </button>
+          </li>
+
+          <li>
+            <button type="button" data-lang="es">
+              🇪🇸 Español
+            </button>
+          </li>
+
+          <li>
+            <button type="button" data-lang="ar">
+              🇸🇦 العربية
+            </button>
+          </li>
+
+          <li>
+            <button type="button" data-lang="ko">
+              🇰🇷 한국어
+            </button>
+          </li>
+
+          <li>
+            <button type="button" data-lang="ru">
+              🇷🇺 Русский
+            </button>
+          </li>
+
+          <li>
+            <button type="button" data-lang="fr">
+              🇫🇷 Français
+            </button>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <button
+        class="mxp-control"
+        id="mxpThemeButton"
+        type="button"
+        aria-label="Toggle dark mode"
+        title="Toggle dark mode">
+
+        ◐
+
+      </button>
+
+      <button
+        class="mxp-control mxp-menu-button"
+        id="mxpMenuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mxpMainNav">
+
+        ☰
+
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+<script>
+(function () {
+
+  const root = document.documentElement;
+
+  const themeButton =
+    document.getElementById("mxpThemeButton");
+
+  const menuButton =
+    document.getElementById("mxpMenuButton");
+
+  const nav =
+    document.getElementById("mxpMainNav");
+
+  const languageButton =
+    document.getElementById("mxpLanguageButton");
+
+  const languageMenu =
+    document.getElementById("mxpLanguageMenu");
+
+
+  /* Theme */
+
+  const savedTheme =
+    localStorage.getItem("mxp-theme");
+
+  if (
+    savedTheme === "dark" ||
+    (
+      !savedTheme &&
+      window.matchMedia &&
+      window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches
+    )
+  ) {
+    root.classList.add("dark");
+  }
+
+
+  themeButton.addEventListener(
+    "click",
+    function () {
+
+      root.classList.toggle("dark");
+
+      localStorage.setItem(
+        "mxp-theme",
+        root.classList.contains("dark")
+          ? "dark"
+          : "light"
+      );
+
+    }
+  );
+
+
+  /* Mobile navigation */
+
+  menuButton.addEventListener(
+    "click",
+    function () {
+
+      const open =
+        nav.classList.toggle("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        open
+      );
+
+    }
+  );
+
+
+  /* Language menu */
+
+  languageButton.addEventListener(
+    "click",
+    function () {
+
+      const open =
+        languageMenu.classList.toggle("open");
+
+      languageButton.setAttribute(
+        "aria-expanded",
+        open
+      );
+
+    }
+  );
+
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      if (
+        !event.target.closest(
+          ".mxp-language"
+        )
+      ) {
+
+        languageMenu.classList.remove(
+          "open"
+        );
+
+        languageButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      }
+
+    }
+  );
+
+
+  /* Language selection */
+
+  document
+    .querySelectorAll("[data-lang]")
+    .forEach(function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          const language =
+            button.getAttribute("data-lang");
+
+          localStorage.setItem(
+            "mxp-language",
+            language
+          );
+
+          languageButton.textContent =
+            language.toUpperCase() + " ▾";
+
+          languageMenu.classList.remove(
+            "open"
+          );
+
+          languageButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+      );
+
+    });
+
+
+  /* Saved language */
+
+  const savedLanguage =
+    localStorage.getItem("mxp-language");
+
+  if (savedLanguage) {
+
+    languageButton.textContent =
+      savedLanguage.toUpperCase() + " ▾";
+
+  }
+
+
+  /* Active page */
+
+  const currentPage =
+    window.location.pathname
+      .replace(/\/+$/, "")
+      .split("/")
+      .pop()
+      .replace(/\.html$/, "") || "index";
+
+  document
+    .querySelectorAll(".mxp-nav a")
+    .forEach(function (link) {
+
+      if (
+        link.getAttribute("data-page") ===
+        currentPage
+      ) {
+
+        link.classList.add("active");
+
+        link.setAttribute(
+          "aria-current",
+          "page"
+        );
+
+      }
+
+    });
+
+})();
+</script>
+
+</body>
+</html>

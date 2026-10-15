@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Affiliate redirect links (/products/<name>) are not content pages
+Disallow: /products/
+
+# Shared page parts (not standalone pages)
+Disallow: /header
+Disallow: /footer
+Disallow: /scroll-top
+Disallow: /header.html
+Disallow: /footer.html
+Disallow: /scroll-top.html
+
+Sitemap: https://maxprohealth.pages.dev/sitemap.xml

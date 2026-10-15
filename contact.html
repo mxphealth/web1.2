@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon & app icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+
+<title>Contact MaxproHealth | Send an Inquiry</title>
+
+<meta name="description" content="Contact MaxproHealth with questions, product inquiries, partnership requests, K-Beauty inquiries, or general feedback.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="MaxproHealth">
+<meta name="theme-color" content="#16845b">
+
+<link rel="canonical" href="https://maxprohealth.pages.dev/contact">
+
+<style>
+:root {
+  --page-bg: #f6faf8;
+  --surface: #ffffff;
+  --surface-soft: #f1f7f4;
+  --text: #17231e;
+  --muted: #66756e;
+  --border: #dce7e2;
+  --accent: #16845b;
+  --accent-dark: #0d6846;
+  --danger: #c0392b;
+  --shadow: 0 20px 55px rgba(20,55,42,.10);
+}
+
+html.dark {
+  --page-bg: #101714;
+  --surface: #17201c;
+  --surface-soft: #1d2924;
+  --text: #f1f6f3;
+  --muted: #a5b2ab;
+  --border: #304039;
+  --accent: #40c88d;
+  --accent-dark: #59d79e;
+  --danger: #ff8074;
+  --shadow: 0 20px 55px rgba(0,0,0,.30);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  line-height: 1.6;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.mxp-contact-page {
+  width: 100%;
+  padding: 55px 20px 70px;
+}
+
+.mxp-contact-container {
+  width: min(70%, 920px);
+  margin: 0 auto;
+}
+
+.mxp-contact-hero {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.mxp-contact-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.mxp-contact-hero h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(2rem,4vw,3rem);
+  line-height: 1.12;
+  letter-spacing: -.04em;
+}
+
+.mxp-contact-hero p {
+  max-width: 650px;
+  margin: 14px auto 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.mxp-contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  padding: clamp(24px,4vw,42px);
+}
+
+.mxp-form {
+  display: grid;
+  gap: 18px;
+}
+
+.mxp-field {
+  width: 100%;
+}
+
+.mxp-input,
+.mxp-select,
+.mxp-textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.mxp-input,
+.mxp-select {
+  min-height: 54px;
+  padding: 0 15px;
+}
+
+.mxp-textarea {
+  min-height: 220px;
+  padding: 15px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.mxp-input::placeholder,
+.mxp-textarea::placeholder {
+  color: var(--muted);
+  opacity: .9;
+}
+
+.mxp-input:focus,
+.mxp-select:focus,
+.mxp-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(22,132,91,.12);
+}
+
+.mxp-phone-row,
+.mxp-captcha-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mxp-character-counter {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding-right: 2px;
+  color: var(--muted);
+  text-align: right;
+  font-size: .78rem;
+}
+
+.mxp-captcha-display {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      var(--surface-soft),
+      var(--surface-soft) 7px,
+      var(--surface) 7px,
+      var(--surface) 14px
+    );
+  color: var(--text);
+  font-family: "Courier New",monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  user-select: none;
+}
+
+.mxp-captcha-refresh {
+  display: block;
+  width: fit-content;
+  margin: 7px 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.mxp-form-status {
+  min-height: 22px;
+  margin: 0;
+  color: var(--danger);
+  font-size: .84rem;
+}
+
+.mxp-form-status.success {
+  color: var(--accent);
+}
+
+.mxp-required-note {
+  margin: -4px 0 0;
+  color: var(--muted);
+  font-size: .76rem;
+}
+
+.mxp-submit {
+  width: 100%;
+  min-height: 56px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  transition:
+    background .2s ease,
+    transform .2s ease,
+    opacity .2s ease;
+}
+
+.mxp-submit:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.mxp-submit:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.mxp-honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width:900px) {
+  .mxp-contact-container {
+    width: min(90%,920px);
+  }
+}
+
+@media (max-width:700px) {
+  .mxp-contact-page {
+    padding: 35px 14px 55px;
+  }
+
+  .mxp-contact-container {
+    width: 100%;
+  }
+
+  .mxp-contact-card {
+    border-radius: 18px;
+    padding: 22px 16px;
+  }
+
+  .mxp-contact-hero {
+    margin-bottom: 24px;
+  }
+
+  .mxp-contact-hero h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width:520px) {
+  .mxp-phone-row,
+  .mxp-captcha-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mxp-input,
+  .mxp-select,
+  .mxp-captcha-display {
+    min-height: 52px;
+  }
+
+  .mxp-textarea {
+    min-height: 210px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior:auto;
+  }
+
+  .mxp-input,
+  .mxp-select,
+  .mxp-textarea,
+  .mxp-submit {
+    transition:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     GLOBAL HEADER
+     ===================================================== -->
+<div id="mxp-global-header"></div>
+
+<main class="mxp-contact-page">
+
+  <div class="mxp-contact-container">
+
+    <section class="mxp-contact-hero" aria-labelledby="contact-title">
+
+      <span class="mxp-contact-eyebrow">
+        Contact MaxproHealth
+      </span>
+
+      <h1 id="contact-title">
+        Send us a message
+      </h1>
+
+      <p>
+        Have a question, suggestion, partnership inquiry, or need
+        more information? Send us your inquiry and our team will
+        review your message.
+      </p>
+
+    </section>
+
+    <section
+      class="mxp-contact-card"
+      aria-label="Contact form">
+
+      <form
+        class="mxp-form"
+        id="mxpContactForm"
+        action="https://formsubmit.co/"
+        method="POST"
+        novalidate>
+
+        <input
+          type="hidden"
+          name="_subject"
+          value="New MaxproHealth Contact Inquiry">
+
+        <input
+          type="hidden"
+          name="_captcha"
+          value="false">
+
+        <input
+          type="hidden"
+          name="_template"
+          value="table">
+
+        <input
+          type="hidden"
+          name="_next"
+          value="https://maxprohealth.pages.dev/thank-you">
+
+        <input
+          class="mxp-honeypot"
+          type="text"
+          name="_honey"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true">
+
+        <!-- NAME -->
+        <div class="mxp-field">
+          <input
+            class="mxp-input"
+            id="mxpName"
+            name="name"
+            type="text"
+            placeholder="Full name *"
+            autocomplete="name"
+            maxlength="100"
+            required>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="mxp-field">
+          <input
+            class="mxp-input"
+            id="mxpEmail"
+            name="email"
+            type="email"
+            placeholder="Email address *"
+            autocomplete="email"
+            maxlength="150"
+            required>
+        </div>
+
+        <!-- PHONE -->
+        <div class="mxp-field">
+
+          <div class="mxp-phone-row">
+
+            <select
+              class="mxp-select"
+              id="mxpCountry"
+              name="country_code"
+              aria-label="Country calling code"
+              required>
+            </select>
+
+            <input
+              class="mxp-input"
+              id="mxpPhone"
+              name="phone"
+              type="tel"
+              placeholder="Phone number *"
+              autocomplete="tel"
+              inputmode="tel"
+              maxlength="30"
+              required>
+
+          </div>
+
+        </div>
+
+        <!-- PURPOSE -->
+        <div class="mxp-field">
+
+          <select
+            class="mxp-select"
+            id="mxpTopic"
+            name="inquiry_topic"
+            required>
+
+            <option value="" selected disabled>
+              --- Select Inquiry Topic ---
+            </option>
+
+            <option value="General Inquiry">
+              General Inquiry
+            </option>
+
+            <option value="Product Information">
+              Product Information
+            </option>
+
+            <option value="Business Partnership">
+              Business Partnership
+            </option>
+
+            <option value="K-Beauty / Supplier Inquiry">
+              K-Beauty / Supplier Inquiry
+            </option>
+
+            <option value="Website / Content Feedback">
+              Website / Content Feedback
+            </option>
+
+          </select>
+
+        </div>
+
+        <!-- COMPANY -->
+        <div class="mxp-field">
+
+          <input
+            class="mxp-input"
+            id="mxpCompany"
+            name="company"
+            type="text"
+            placeholder="Company (optional)"
+            autocomplete="organization"
+            maxlength="150">
+
+        </div>
+
+        <!-- MESSAGE -->
+        <div class="mxp-field">
+
+          <textarea
+            class="mxp-textarea"
+            id="mxpMessage"
+            name="message"
+            placeholder="Please tell us how we can help... or Your message..."
+            maxlength="2000"
+            required></textarea>
+
+          <span
+            class="mxp-character-counter"
+            id="mxpCharacterCounter"
+            aria-live="polite">
+            0/2000 characters
+          </span>
+
+        </div>
+
+        <!-- CAPTCHA -->
+        <div class="mxp-field">
+
+          <div class="mxp-captcha-row">
+
+            <input
+              class="mxp-input"
+              id="mxpCaptchaInput"
+              type="text"
+              placeholder="Enter the code here *"
+              maxlength="6"
+              autocomplete="off"
+              inputmode="text"
+              required>
+
+            <div
+              class="mxp-captcha-display"
+              id="mxpCaptchaDisplay"
+              aria-label="Verification code">
+              Loading...
+            </div>
+
+          </div>
+
+          <button
+            class="mxp-captcha-refresh"
+            id="mxpCaptchaRefresh"
+            type="button">
+            Refresh code
+          </button>
+
+        </div>
+
+        <p
+          class="mxp-form-status"
+          id="mxpFormStatus"
+          aria-live="polite"></p>
+
+        <p class="mxp-required-note">
+          * Required fields
+        </p>
+
+        <button
+          class="mxp-submit"
+          id="mxpSubmit"
+          type="submit">
+          Send Inquiry
+        </button>
+
+      </form>
+
+    </section>
+
+  </div>
+
+</main>
+
+<!-- =====================================================
+     GLOBAL FOOTER
+     ===================================================== -->
+<div id="mxp-global-footer"></div>
+
+<!-- Global Scroll-to-top (scroll-top.html) -->
+<div id="mxp-global-scroll-top"></div>
+
+<script>
+(function () {
+
+  "use strict";
+
+  /* =====================================================
+     GLOBAL HEADER / FOOTER
+     ===================================================== */
+
+  const headerContainer =
+    document.getElementById("mxp-global-header");
+
+  const footerContainer =
+    document.getElementById("mxp-global-footer");
+
+  const scrollTopContainer =
+    document.getElementById("mxp-global-scroll-top");
+
+  function executeInsertedScripts(container) {
+
+    container
+      .querySelectorAll("script")
+      .forEach(function (oldScript) {
+
+        const newScript =
+          document.createElement("script");
+
+        Array.from(oldScript.attributes)
+          .forEach(function (attribute) {
+
+            newScript.setAttribute(
+              attribute.name,
+              attribute.value
+            );
+
+          });
+
+        newScript.textContent =
+          oldScript.textContent;
+
+        oldScript.parentNode.replaceChild(
+          newScript,
+          oldScript
+        );
+
+      });
+
+  }
+
+  function loadGlobalPart(url, target) {
+
+    return fetch(url, {
+      method: "GET",
+      credentials: "same-origin",
+      cache: "no-cache"
+    })
+
+    .then(function (response) {
+
+      if (!response.ok) {
+        throw new Error(
+          "Unable to load " + url
+        );
+      }
+
+      return response.text();
+
+    })
+
+    .then(function (html) {
+
+      target.innerHTML = html;
+
+      executeInsertedScripts(target);
+
+    });
+
+  }
+
+  Promise.all([
+    loadGlobalPart(
+      "header.html",
+      headerContainer
+    ),
+    loadGlobalPart(
+      "footer.html",
+      footerContainer
+    ),
+    loadGlobalPart(
+      "scroll-top.html",
+      scrollTopContainer
+    )
+  ])
+
+  .catch(function (error) {
+
+    console.warn(
+      "MaxproHealth global component error:",
+      error
+    );
+
+  });
+
+
+  /* =====================================================
+     COMPLETE ISO 3166-1 COUNTRY / AREA LIST
+     248 ENTRIES
+     NORTH KOREA / KP / +850 EXCLUDED
+     ===================================================== */
+
+  const countries = [
+
+    ["Afghanistan","+93","AF"],
+    ["Åland Islands","+358","AX"],
+    ["Albania","+355","AL"],
+    ["Algeria","+213","DZ"],
+    ["American Samoa","+1-684","AS"],
+    ["Andorra","+376","AD"],
+    ["Angola","+244","AO"],
+    ["Anguilla","+1-264","AI"],
+    ["Antarctica","+672","AQ"],
+    ["Antigua and Barbuda","+1-268","AG"],
+    ["Argentina","+54","AR"],
+    ["Armenia","+374","AM"],
+    ["Aruba","+297","AW"],
+    ["Australia","+61","AU"],
+    ["Austria","+43","AT"],
+    ["Azerbaijan","+994","AZ"],
+
+    ["Bahamas","+1-242","BS"],
+    ["Bahrain","+973","BH"],
+    ["Bangladesh","+880","BD"],
+    ["Barbados","+1-246","BB"],
+    ["Belarus","+375","BY"],
+    ["Belgium","+32","BE"],
+    ["Belize","+501","BZ"],
+    ["Benin","+229","BJ"],
+    ["Bermuda","+1-441","BM"],
+    ["Bhutan","+975","BT"],
+    ["Bolivia","+591","BO"],
+    ["Bonaire, Sint Eustatius and Saba","+599","BQ"],
+    ["Bosnia and Herzegovina","+387","BA"],
+    ["Botswana","+267","BW"],
+    ["Bouvet Island","+47","BV"],
+    ["Brazil","+55","BR"],
+    ["British Indian Ocean Territory","+246","IO"],
+    ["British Virgin Islands","+1-284","VG"],
+    ["Brunei","+673","BN"],
+    ["Bulgaria","+359","BG"],
+    ["Burkina Faso","+226","BF"],
+    ["Burundi","+257","BI"],
+
+    ["Cabo Verde","+238","CV"],
+    ["Cambodia","+855","KH"],
+    ["Cameroon","+237","CM"],
+    ["Canada","+1","CA"],
+    ["Cayman Islands","+1-345","KY"],
+    ["Central African Republic","+236","CF"],
+    ["Chad","+235","TD"],
+    ["Chile","+56","CL"],
+    ["China","+86","CN"],
+    ["Christmas Island","+61","CX"],
+    ["Cocos (Keeling) Islands","+61","CC"],
+    ["Colombia","+57","CO"],
+    ["Comoros","+269","KM"],
+    ["Congo","+242","CG"],
+    ["Cook Islands","+682","CK"],
+    ["Costa Rica","+506","CR"],
+    ["Côte d'Ivoire","+225","CI"],
+    ["Croatia","+385","HR"],
+    ["Cuba","+53","CU"],
+    ["Curaçao","+599","CW"],
+    ["Cyprus","+357","CY"],
+    ["Czechia","+420","CZ"],
+
+    ["Democratic Republic of the Congo","+243","CD"],
+    ["Denmark","+45","DK"],
+    ["Djibouti","+253","DJ"],
+    ["Dominica","+1-767","DM"],
+    ["Dominican Republic","+1-809 / +1-829 / +1-849","DO"],
+
+    ["Ecuador","+593","EC"],
+    ["Egypt","+20","EG"],
+    ["El Salvador","+503","SV"],
+    ["Equatorial Guinea","+240","GQ"],
+    ["Eritrea","+291","ER"],
+    ["Estonia","+372","EE"],
+    ["Eswatini","+268","SZ"],
+    ["Ethiopia","+251","ET"],
+
+    ["Falkland Islands (Malvinas)","+500","FK"],
+    ["Faroe Islands","+298","FO"],
+    ["Fiji","+679","FJ"],
+    ["Finland","+358","FI"],
+    ["France","+33","FR"],
+    ["French Guiana","+594","GF"],
+    ["French Polynesia","+689","PF"],
+    ["French Southern Territories","+262","TF"],
+
+    ["Gabon","+241","GA"],
+    ["Gambia","+220","GM"],
+    ["Georgia","+995","GE"],
+    ["Germany","+49","DE"],
+    ["Ghana","+233","GH"],
+    ["Gibraltar","+350","GI"],
+    ["Greece","+30","GR"],
+    ["Greenland","+299","GL"],
+    ["Grenada","+1-473","GD"],
+    ["Guadeloupe","+590","GP"],
+    ["Guam","+1-671","GU"],
+    ["Guatemala","+502","GT"],
+    ["Guernsey","+44-1481","GG"],
+    ["Guinea","+224","GN"],
+    ["Guinea-Bissau","+245","GW"],
+    ["Guyana","+592","GY"],
+
+    ["Haiti","+509","HT"],
+    ["Heard Island and McDonald Islands","+672","HM"],
+    ["Holy See (Vatican City)","+39","VA"],
+    ["Honduras","+504","HN"],
+    ["Hong Kong","+852","HK"],
+    ["Hungary","+36","HU"],
+
+    ["Iceland","+354","IS"],
+    ["India","+91","IN"],
+    ["Indonesia","+62","ID"],
+    ["Iran","+98","IR"],
+    ["Iraq","+964","IQ"],
+    ["Ireland","+353","IE"],
+    ["Isle of Man","+44-1624","IM"],
+    ["Israel","+972","IL"],
+    ["Italy","+39","IT"],
+
+    ["Jamaica","+1-876","JM"],
+    ["Japan","+81","JP"],
+    ["Jersey","+44-1534","JE"],
+    ["Jordan","+962","JO"],
+
+    ["Kazakhstan","+7","KZ"],
+    ["Kenya","+254","KE"],
+    ["Kiribati","+686","KI"],
+    ["Kuwait","+965","KW"],
+    ["Kyrgyzstan","+996","KG"],
+
+    ["Laos","+856","LA"],
+    ["Latvia","+371","LV"],
+    ["Lebanon","+961","LB"],
+    ["Lesotho","+266","LS"],
+    ["Liberia","+231","LR"],
+    ["Libya","+218","LY"],
+    ["Liechtenstein","+423","LI"],
+    ["Lithuania","+370","LT"],
+    ["Luxembourg","+352","LU"],
+
+    ["Macao","+853","MO"],
+    ["Madagascar","+261","MG"],
+    ["Malawi","+265","MW"],
+    ["Malaysia","+60","MY"],
+    ["Maldives","+960","MV"],
+    ["Mali","+223","ML"],
+    ["Malta","+356","MT"],
+    ["Marshall Islands","+692","MH"],
+    ["Martinique","+596","MQ"],
+    ["Mauritania","+222","MR"],
+    ["Mauritius","+230","MU"],
+    ["Mayotte","+262","YT"],
+    ["Mexico","+52","MX"],
+    ["Micronesia","+691","FM"],
+    ["Moldova","+373","MD"],
+    ["Monaco","+377","MC"],
+    ["Mongolia","+976","MN"],
+    ["Montenegro","+382","ME"],
+    ["Montserrat","+1-664","MS"],
+    ["Morocco","+212","MA"],
+    ["Mozambique","+258","MZ"],
+    ["Myanmar","+95","MM"],
+
+    ["Namibia","+264","NA"],
+    ["Nauru","+674","NR"],
+    ["Nepal","+977","NP"],
+    ["Netherlands","+31","NL"],
+    ["New Caledonia","+687","NC"],
+    ["New Zealand","+64","NZ"],
+    ["Nicaragua","+505","NI"],
+    ["Niger","+227","NE"],
+    ["Nigeria","+234","NG"],
+    ["Niue","+683","NU"],
+    ["Norfolk Island","+672","NF"],
+    ["North Macedonia","+389","MK"],
+    ["Norway","+47","NO"],
+
+    ["Oman","+968","OM"],
+
+    ["Pakistan","+92","PK"],
+    ["Palau","+680","PW"],
+    ["Palestine, State of","+970","PS"],
+    ["Panama","+507","PA"],
+    ["Papua New Guinea","+675","PG"],
+    ["Paraguay","+595","PY"],
+    ["Peru","+51","PE"],
+    ["Philippines","+63","PH"],
+    ["Pitcairn","+64","PN"],
+    ["Poland","+48","PL"],
+    ["Portugal","+351","PT"],
+    ["Puerto Rico","+1-787 / +1-939","PR"],
+
+    ["Qatar","+974","QA"],
+
+    ["Réunion","+262","RE"],
+    ["Romania","+40","RO"],
+    ["Russia","+7","RU"],
+    ["Rwanda","+250","RW"],
+
+    ["Saint Barthélemy","+590","BL"],
+    ["Saint Helena, Ascension and Tristan da Cunha","+290","SH"],
+    ["Saint Kitts and Nevis","+1-869","KN"],
+    ["Saint Lucia","+1-758","LC"],
+    ["Saint Martin (French part)","+590","MF"],
+    ["Saint Pierre and Miquelon","+508","PM"],
+    ["Saint Vincent and the Grenadines","+1-784","VC"],
+    ["Samoa","+685","WS"],
+    ["San Marino","+378","SM"],
+    ["Sao Tome and Principe","+239","ST"],
+    ["Saudi Arabia","+966","SA"],
+    ["Senegal","+221","SN"],
+    ["Serbia","+381","RS"],
+    ["Seychelles","+248","SC"],
+    ["Sierra Leone","+232","SL"],
+    ["Singapore","+65","SG"],
+    ["Sint Maarten (Dutch part)","+1-721","SX"],
+    ["Slovakia","+421","SK"],
+    ["Slovenia","+386","SI"],
+    ["Solomon Islands","+677","SB"],
+    ["Somalia","+252","SO"],
+    ["South Africa","+27","ZA"],
+    ["South Georgia and the South Sandwich Islands","+500","GS"],
+    ["South Korea","+82","KR"],
+    ["South Sudan","+211","SS"],
+    ["Spain","+34","ES"],
+    ["Sri Lanka","+94","LK"],
+    ["Sudan","+249","SD"],
+    ["Suriname","+597","SR"],
+    ["Svalbard and Jan Mayen","+47","SJ"],
+    ["Sweden","+46","SE"],
+    ["Switzerland","+41","CH"],
+    ["Syria","+963","SY"],
+
+    ["Taiwan, Province of China","+886","TW"],
+    ["Tajikistan","+992","TJ"],
+    ["Tanzania","+255","TZ"],
+    ["Thailand","+66","TH"],
+    ["Timor-Leste","+670","TL"],
+    ["Togo","+228","TG"],
+    ["Tokelau","+690","TK"],
+    ["Tonga","+676","TO"],
+    ["Trinidad and Tobago","+1-868","TT"],
+    ["Tunisia","+216","TN"],
+    ["Türkiye","+90","TR"],
+    ["Turkmenistan","+993","TM"],
+    ["Turks and Caicos Islands","+1-649","TC"],
+    ["Tuvalu","+688","TV"],
+
+    ["Uganda","+256","UG"],
+    ["Ukraine","+380","UA"],
+    ["United Arab Emirates","+971","AE"],
+    ["United Kingdom","+44","GB"],
+    ["United States","+1","US"],
+    ["United States Minor Outlying Islands","+1","UM"],
+    ["United States Virgin Islands","+1-340","VI"],
+    ["Uruguay","+598","UY"],
+    ["Uzbekistan","+998","UZ"],
+
+    ["Vanuatu","+678","VU"],
+    ["Venezuela","+58","VE"],
+    ["Vietnam","+84","VN"],
+
+    ["Wallis and Futuna","+681","WF"],
+    ["Western Sahara","+212","EH"],
+
+    ["Yemen","+967","YE"],
+
+    ["Zambia","+260","ZM"],
+    ["Zimbabwe","+263","ZW"]
+
+  ];
+
+
+  /* =====================================================
+     POPULATE COUNTRY SELECT
+     ===================================================== */
+
+  const countrySelect =
+    document.getElementById("mxpCountry");
+
+  countries.forEach(function (country) {
+
+    const option =
+      document.createElement("option");
+
+    option.value = country[2];
+
+    option.dataset.dialCode =
+      country[1];
+
+    option.textContent =
+      country[0] + " [" + country[1] + "]";
+
+    countrySelect.appendChild(option);
+
+  });
+
+
+  /* =====================================================
+     DEFAULT = SOUTH KOREA
+     ===================================================== */
+
+  function selectCountry(countryCode) {
+
+    if (!countryCode) {
+      return false;
+    }
+
+    const code =
+      String(countryCode)
+        .trim()
+        .toUpperCase();
+
+    const option =
+      Array.from(countrySelect.options)
+        .find(function (item) {
+          return item.value === code;
+        });
+
+    if (!option) {
+      return false;
+    }
+
+    countrySelect.value = code;
+
+    return true;
+  }
+
+  selectCountry("KR");
+
+
+  /* =====================================================
+     IP AUTO-DETECTION
+     ===================================================== */
+
+  function detectCountryByIP() {
+
+    fetch("https://ipapi.co/json/", {
+      method: "GET",
+      headers: {
+        "Accept": "application/json"
+      },
+      cache: "no-store"
+    })
+
+    .then(function (response) {
+
+      if (!response.ok) {
+        throw new Error("IP country detection failed.");
+      }
+
+      return response.json();
+
+    })
+
+    .then(function (data) {
+
+      if (
+        data &&
+        typeof data.country_code === "string"
+      ) {
+
+        selectCountry(
+          data.country_code
+        );
+
+      }
+
+    })
+
+    .catch(function () {
+
+      /*
+       * If IP detection fails, KR remains
+       * selected as the project fallback.
+       */
+
+      selectCountry("KR");
+
+    });
+
+  }
+
+  detectCountryByIP();
+
+
+  /* =====================================================
+     MESSAGE COUNTER
+     ===================================================== */
+
+  const message =
+    document.getElementById("mxpMessage");
+
+  const counter =
+    document.getElementById("mxpCharacterCounter");
+
+  function updateCounter() {
+
+    counter.textContent =
+      message.value.length +
+      "/2000 characters";
+
+  }
+
+  message.addEventListener(
+    "input",
+    updateCounter
+  );
+
+
+  /* =====================================================
+     CAPTCHA
+     ===================================================== */
+
+  const captchaDisplay =
+    document.getElementById(
+      "mxpCaptchaDisplay"
+    );
+
+  const captchaInput =
+    document.getElementById(
+      "mxpCaptchaInput"
+    );
+
+  const captchaRefresh =
+    document.getElementById(
+      "mxpCaptchaRefresh"
+    );
+
+  let captchaCode = "";
+
+  function generateCaptcha() {
+
+    const characters =
+      "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    let generated = "";
+
+    for (
+      let index = 0;
+      index < 6;
+      index++
+    ) {
+
+      generated +=
+        characters.charAt(
+          Math.floor(
+            Math.random() *
+            characters.length
+          )
+        );
+
+    }
+
+    captchaCode =
+      generated;
+
+    captchaDisplay.textContent =
+      captchaCode;
+
+    captchaInput.value = "";
+
+  }
+
+  captchaRefresh.addEventListener(
+    "click",
+    generateCaptcha
+  );
+
+  generateCaptcha();
+
+
+  /* =====================================================
+     FORM VALIDATION
+     ===================================================== */
+
+  const form =
+    document.getElementById(
+      "mxpContactForm"
+    );
+
+  const topic =
+    document.getElementById(
+      "mxpTopic"
+    );
+
+  const status =
+    document.getElementById(
+      "mxpFormStatus"
+    );
+
+  const submitButton =
+    document.getElementById(
+      "mxpSubmit"
+    );
+
+
+  form.addEventListener(
+    "submit",
+    function (event) {
+
+      status.textContent = "";
+
+      status.classList.remove(
+        "success"
+      );
+
+
+      if (!form.checkValidity()) {
+
+        event.preventDefault();
+
+        form.reportValidity();
+
+        return;
+
+      }
+
+
+      if (!topic.value) {
+
+        event.preventDefault();
+
+        status.textContent =
+          "Please select an inquiry topic.";
+
+        topic.focus();
+
+        return;
+
+      }
+
+
+      const enteredCode =
+        captchaInput.value
+          .trim()
+          .toUpperCase();
+
+
+      if (
+        !enteredCode ||
+        enteredCode !== captchaCode
+      ) {
+
+        event.preventDefault();
+
+        status.textContent =
+          "The verification code is incorrect. Please try again.";
+
+        generateCaptcha();
+
+        captchaInput.focus();
+
+        return;
+
+      }
+
+
+      /*
+       * Prevent duplicate submissions.
+       */
+
+      submitButton.disabled = true;
+
+      submitButton.textContent =
+        "Sending...";
+
+    }
+  );
+
+})();
+</script>
+
+</body>
+</html>
