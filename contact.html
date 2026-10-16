@@ -704,10 +704,10 @@ button {
     const option =
       document.createElement("option");
 
-    option.value = country[2];
-
-    option.dataset.dialCode =
-      country[1];
+    // Submit the actual dial code (e.g., "+82") instead of the ISO code (e.g., "KR")
+    option.value = country[1]; 
+    // Store the ISO code internally for JS auto-detection lookup
+    option.dataset.iso = country[2]; 
 
     option.textContent =
       country[0] + " [" + country[1] + "]";
@@ -720,28 +720,30 @@ button {
      DEFAULT = SOUTH KOREA
      ===================================================== */
 
-  function selectCountry(countryCode) {
+  function selectCountry(isoCode) {
 
-    if (!countryCode) {
+    if (!isoCode) {
       return false;
     }
 
     const code =
-      String(countryCode)
+      String(isoCode)
         .trim()
         .toUpperCase();
 
+    // Find the option by its internal ISO code
     const option =
       Array.from(countrySelect.options)
         .find(function (item) {
-          return item.value === code;
+          return item.dataset.iso === code;
         });
 
     if (!option) {
       return false;
     }
 
-    countrySelect.value = code;
+    // Set the select value to the dial code
+    countrySelect.value = option.value;
 
     return true;
   }
