@@ -1256,13 +1256,41 @@ button {
 
 
       /*
-       * Prevent duplicate submissions.
+       * Prevent default submit and send via fetch
+       * with no-cors, then redirect manually to the
+       * thank-you page. This bypasses the Google Apps
+       * Script sandboxed iframe banner.
        */
+
+      event.preventDefault();
 
       submitButton.disabled = true;
 
       submitButton.textContent =
         "Sending...";
+
+      const formData =
+        new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      })
+
+      .then(function () {
+
+        window.location.href =
+          "https://maxprohealth.pages.dev/thank-you";
+
+      })
+
+      .catch(function () {
+
+        window.location.href =
+          "https://maxprohealth.pages.dev/thank-you";
+
+      });
 
     }
   );
