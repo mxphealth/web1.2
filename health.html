@@ -62,8 +62,6 @@
   <style>
     /* =========================================================
        TOKENS
-       Same palette as the original health page. The --pg- prefix
-       keeps them safe from the :root variables in header.html.
     ========================================================= */
     :root {
       --pg-page: #f7faf8;
@@ -94,11 +92,7 @@
     /* =========================================================
        BASE
     ========================================================= */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
@@ -107,29 +101,22 @@
     }
 
     body {
-      /* Reserves the fixed header's height before header.html loads,
-         so content does not jump. Values match header.html. */
+      /* Reserves the fixed header's height before header.html loads.
+         Values match header.html (breakpoint 1020px). */
       margin: 0;
       padding-top: 68px;
       background: var(--pg-page);
       color: var(--pg-text);
-      font-family: Inter, "Segoe UI", system-ui, -apple-system,
-        BlinkMacSystemFont, sans-serif;
+      font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
       text-rendering: optimizeLegibility;
     }
 
-    @media (min-width: 851px) {
-      body {
-        padding-top: 74px;
-      }
+    @media (min-width: 1021px) {
+      body { padding-top: 74px; }
     }
 
-    a,
-    button,
-    summary {
-      -webkit-tap-highlight-color: transparent;
-    }
+    a, button, summary { -webkit-tap-highlight-color: transparent; }
 
     :focus-visible {
       outline: 3px solid rgba(22, 132, 91, 0.5);
@@ -142,14 +129,10 @@
       margin: 0 auto;
     }
 
-    .health-page:focus {
-      outline: none;
-    }
+    .health-page:focus { outline: none; }
 
     @media (min-width: 601px) {
-      .health-page {
-        width: min(1200px, calc(100% - 32px));
-      }
+      .health-page { width: min(1200px, calc(100% - 32px)); }
     }
 
     /* Skip link */
@@ -167,13 +150,12 @@
       transform: translateY(-250%);
     }
 
-    .mxp-skip:focus {
-      transform: none;
-    }
+    .mxp-skip:focus { transform: none; }
 
     /* =========================================================
-       FALLBACK HEADER
-       Only shown if header.html cannot load, or without JavaScript.
+       FALLBACK HEADER / FOOTER
+       Only shown if header.html / footer.html cannot load,
+       or without JavaScript.
     ========================================================= */
     .mxp-fb-header {
       position: fixed;
@@ -213,7 +195,8 @@
       white-space: nowrap;
     }
 
-    .mxp-fb-nav a {
+    .mxp-fb-nav a,
+    .mxp-fb-footer a {
       padding: 10px 9px;
       color: var(--pg-muted);
       font-size: 0.88rem;
@@ -221,12 +204,25 @@
       text-decoration: none;
     }
 
-    .mxp-fb-nav a:hover {
-      color: var(--pg-accent-dark);
+    .mxp-fb-nav a:hover,
+    .mxp-fb-footer a:hover { color: var(--pg-accent-dark); }
+
+    .mxp-fb-footer {
+      margin-top: 40px;
+      padding: 28px 16px;
+      border-top: 1px solid var(--pg-border);
+      background: var(--pg-card);
+      text-align: center;
+    }
+
+    .mxp-fb-footer p {
+      margin: 8px 0 0;
+      color: var(--pg-muted);
+      font-size: 0.85rem;
     }
 
     /* =========================================================
-       HERO (original layout and type sizes)
+       HERO
     ========================================================= */
     .health-hero {
       padding: 55px 0 45px;
@@ -263,9 +259,7 @@
     }
 
     @media (min-width: 601px) {
-      .health-hero {
-        padding: 80px 0 65px;
-      }
+      .health-hero { padding: 80px 0 65px; }
     }
 
     /* =========================================================
@@ -316,15 +310,11 @@
     }
 
     /* =========================================================
-       SECTIONS (original heading sizes)
+       SECTIONS
     ========================================================= */
-    .health-section {
-      padding: 20px 0 65px;
-    }
+    .health-section { padding: 20px 0 65px; }
 
-    .health-section-heading {
-      margin-bottom: 25px;
-    }
+    .health-section-heading { margin-bottom: 25px; }
 
     .health-section-heading h2 {
       margin: 0 0 7px;
@@ -345,12 +335,10 @@
       text-underline-offset: 3px;
     }
 
-    .health-text-link:hover {
-      text-decoration-thickness: 2px;
-    }
+    .health-text-link:hover { text-decoration-thickness: 2px; }
 
     /* =========================================================
-       TOPIC + LINK CARDS (original card style)
+       TOPIC + LINK CARDS
     ========================================================= */
     .health-categories {
       display: grid;
@@ -371,9 +359,7 @@
       text-decoration: none;
       color: var(--pg-text);
       box-shadow: var(--pg-shadow);
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
     .health-category:hover {
@@ -405,23 +391,16 @@
     }
 
     @media (min-width: 601px) {
-      .health-categories {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .health-categories { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (min-width: 901px) {
-      .health-categories {
-        grid-template-columns: repeat(4, 1fr);
-      }
-
-      .health-categories-3 {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .health-categories { grid-template-columns: repeat(4, 1fr); }
+      .health-categories-3 { grid-template-columns: repeat(3, 1fr); }
     }
 
     /* =========================================================
-       FEATURED GUIDE (compact)
+       FEATURED GUIDE
     ========================================================= */
     .health-featured {
       margin-bottom: 55px;
@@ -476,9 +455,7 @@
       transition: background 0.2s ease;
     }
 
-    .health-button:hover {
-      background: var(--pg-accent-dark);
-    }
+    .health-button:hover { background: var(--pg-accent-dark); }
 
     .health-habits {
       display: grid;
@@ -514,18 +491,11 @@
       font-weight: 800;
     }
 
-    .health-habits strong {
-      display: block;
-    }
-
-    .health-habits span {
-      color: var(--pg-muted);
-    }
+    .health-habits strong { display: block; }
+    .health-habits span { color: var(--pg-muted); }
 
     @media (min-width: 701px) {
-      .health-featured {
-        padding: 24px 28px;
-      }
+      .health-featured { padding: 24px 28px; }
 
       .health-featured-main {
         flex-direction: row;
@@ -558,9 +528,7 @@
       box-shadow: var(--pg-shadow);
     }
 
-    .health-article:target {
-      border-color: var(--pg-accent);
-    }
+    .health-article:target { border-color: var(--pg-accent); }
 
     .health-article-top {
       display: flex;
@@ -615,9 +583,7 @@
       list-style: none;
     }
 
-    .health-keypoints summary::-webkit-details-marker {
-      display: none;
-    }
+    .health-keypoints summary::-webkit-details-marker { display: none; }
 
     .health-keypoints summary::after {
       content: "+";
@@ -638,9 +604,7 @@
       font-size: 0.87rem;
     }
 
-    .health-keypoints li {
-      margin-bottom: 9px;
-    }
+    .health-keypoints li { margin-bottom: 9px; }
 
     .health-related {
       display: flex;
@@ -652,9 +616,7 @@
       font-size: 0.84rem;
     }
 
-    .health-related span {
-      color: var(--pg-muted);
-    }
+    .health-related span { color: var(--pg-muted); }
 
     .health-related a {
       color: var(--pg-accent-dark);
@@ -664,39 +626,25 @@
       text-underline-offset: 3px;
     }
 
-    .health-related a:hover {
-      text-decoration-thickness: 2px;
-    }
+    .health-related a:hover { text-decoration-thickness: 2px; }
 
     @media (min-width: 601px) {
-      .health-articles {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .health-articles { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (min-width: 901px) {
-      .health-articles {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .health-articles { grid-template-columns: repeat(3, 1fr); }
     }
 
     /* =========================================================
        REDUCED MOTION
     ========================================================= */
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
+      html { scroll-behavior: auto; }
 
-      *,
-      *::before,
-      *::after {
-        transition: none !important;
-      }
+      *, *::before, *::after { transition: none !important; }
 
-      .health-category:hover {
-        transform: none;
-      }
+      .health-category:hover { transform: none; }
     }
   </style>
 
@@ -816,7 +764,7 @@
     </section>
 
     <!-- =======================================================
-         FEATURED GUIDE (compact)
+         FEATURED GUIDE
     ======================================================== -->
     <section class="health-featured" aria-labelledby="featured-guide">
       <div class="health-featured-main">
@@ -1089,22 +1037,49 @@
   </main>
 
   <!-- Global Footer (footer.html) -->
-  <div id="mxp-footer"></div>
+  <div id="mxp-footer">
+    <noscript>
+      <footer class="mxp-fb-footer">
+        <nav aria-label="Footer navigation">
+          <a href="/">Home</a>
+          <a href="/health">Health</a>
+          <a href="/health-tools">Health Tools</a>
+          <a href="/medical-services">Medical Services</a>
+          <a href="/products">Products</a>
+          <a href="/k-beauty">K-Beauty</a>
+          <a href="/contact">Contact</a>
+        </nav>
+        <nav aria-label="Legal">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms">Terms</a>
+          <a href="/medical-disclaimer">Medical Disclaimer</a>
+          <a href="/affiliate-disclosure">Affiliate Disclosure</a>
+        </nav>
+        <p>&copy; MaxproHealth. All rights reserved.</p>
+      </footer>
+    </noscript>
+  </div>
 
   <!-- Global Scroll-to-top (scroll-top.html) -->
   <div id="mxp-scroll-top"></div>
 
   <!-- =========================================================
        GLOBAL COMPONENT LOADER
-       Loads header.html, footer.html and scroll-top.html exactly
-       as before. If the header cannot load, a small fallback
-       navigation keeps the site usable.
+       Loads header.html, footer.html and scroll-top.html from the
+       site root. If header or footer fail, a small fallback keeps
+       the site navigable.
   ========================================================== -->
   <script>
     (function () {
       "use strict";
 
       var TIMEOUT_MS = 10000;
+
+      var NAV_LINKS =
+        '<a href="/">Home</a><a href="/health">Health</a>' +
+        '<a href="/health-tools">Health Tools</a><a href="/medical-services">Medical Services</a>' +
+        '<a href="/products">Products</a><a href="/k-beauty">K-Beauty</a>' +
+        '<a href="/contact">Contact</a>';
 
       function showHeaderFallback() {
         var element = document.getElementById("mxp-header");
@@ -1116,10 +1091,27 @@
         element.innerHTML =
           '<header class="mxp-fb-header"><div class="mxp-fb-inner">' +
           '<a class="mxp-fb-brand" href="/">MaxproHealth</a>' +
-          '<nav class="mxp-fb-nav" aria-label="Main navigation">' +
-          '<a href="/">Home</a><a href="/health">Health</a>' +
-          '<a href="/products">Products</a><a href="/k-beauty">K-Beauty</a>' +
-          '<a href="/contact">Contact</a></nav></div></header>';
+          '<nav class="mxp-fb-nav" aria-label="Main navigation">' + NAV_LINKS +
+          '</nav></div></header>';
+      }
+
+      function showFooterFallback() {
+        var element = document.getElementById("mxp-footer");
+
+        if (!element) {
+          return;
+        }
+
+        element.innerHTML =
+          '<footer class="mxp-fb-footer">' +
+          '<nav aria-label="Footer navigation">' + NAV_LINKS + '</nav>' +
+          '<nav aria-label="Legal">' +
+          '<a href="/privacy-policy">Privacy Policy</a>' +
+          '<a href="/terms">Terms</a>' +
+          '<a href="/medical-disclaimer">Medical Disclaimer</a>' +
+          '<a href="/affiliate-disclosure">Affiliate Disclosure</a></nav>' +
+          "<p>\u00A9 " + new Date().getFullYear() +
+          " MaxproHealth. All rights reserved.</p></footer>";
       }
 
       async function loadComponent(elementId, file, onFail) {
@@ -1176,9 +1168,9 @@
       }
 
       Promise.all([
-        loadComponent("mxp-header", "header.html", showHeaderFallback),
-        loadComponent("mxp-footer", "footer.html", null),
-        loadComponent("mxp-scroll-top", "scroll-top.html", null)
+        loadComponent("mxp-header", "/header.html", showHeaderFallback),
+        loadComponent("mxp-footer", "/footer.html", showFooterFallback),
+        loadComponent("mxp-scroll-top", "/scroll-top.html", null)
       ]);
     })();
   </script>
