@@ -3,22 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-
 <title>Contact MaxproHealth | Send an Inquiry</title>
-
 <meta name="description" content="Contact MaxproHealth with questions, product inquiries, partnership requests, K-Beauty inquiries, or general feedback.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="MaxproHealth">
 <meta name="theme-color" content="#16845b">
-
 <link rel="canonical" href="https://maxprohealth.pages.dev/contact">
-
 <style>
 :root {
   --page-bg: #f6faf8;
@@ -127,7 +122,7 @@ button { cursor: pointer; }
   box-shadow: 0 0 0 3px rgba(22,132,91,.12);
 }
 
-.mxp-phone-row, .mxp-captcha-row {
+.mxp-phone-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -143,37 +138,38 @@ button { cursor: pointer; }
   font-size: .78rem;
 }
 
-.mxp-captcha-display {
-  min-height: 54px;
+/* Consent */
+.mxp-consent {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: repeating-linear-gradient(135deg, var(--surface-soft), var(--surface-soft) 7px, var(--surface) 7px, var(--surface) 14px);
-  color: var(--text);
-  font-family: "Courier New",monospace;
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: .18em;
-  user-select: none;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--muted);
+  font-size: .86rem;
+  line-height: 1.5;
 }
 
-.mxp-captcha-refresh {
-  display: block;
-  width: fit-content;
-  margin: 7px 0 0 auto;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--accent);
-  font-size: .78rem;
-  font-weight: 700;
+.mxp-consent input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--accent);
 }
+
+.mxp-consent a {
+  color: var(--accent-dark);
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Turnstile */
+.mxp-turnstile { min-height: 65px; }
 
 .mxp-form-status { min-height: 22px; margin: 0; color: var(--danger); font-size: .84rem; }
 .mxp-form-status.success { color: var(--accent); }
 .mxp-required-note { margin: -4px 0 0; color: var(--muted); font-size: .76rem; }
+.mxp-noscript { margin: 0; color: var(--danger); font-size: .86rem; }
 
 .mxp-submit {
   width: 100%;
@@ -212,8 +208,8 @@ button { cursor: pointer; }
 }
 
 @media (max-width:520px) {
-  .mxp-phone-row, .mxp-captcha-row { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .mxp-input, .mxp-select, .mxp-captcha-display { min-height: 52px; }
+  .mxp-phone-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mxp-input, .mxp-select { min-height: 52px; }
   .mxp-textarea { min-height: 210px; }
 }
 
@@ -223,11 +219,11 @@ button { cursor: pointer; }
 }
 </style>
 
-<!-- Load country data from external file -->
+<!-- Country data -->
 <script src="/countries.js" defer></script>
-
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
-
 <body>
 
 <div id="mxp-global-header"></div>
@@ -242,27 +238,27 @@ button { cursor: pointer; }
     </section>
 
     <section class="mxp-contact-card" aria-label="Contact form">
-      <form class="mxp-form" id="mxpContactForm" method="POST" novalidate>
+      <form class="mxp-form" id="mxpContactForm" novalidate>
 
         <input class="mxp-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="mxp-field">
-          <input class="mxp-input" id="mxpName" name="name" type="text" placeholder="Full name *" autocomplete="name" maxlength="100" required>
+          <input class="mxp-input" id="mxpName" name="name" type="text" placeholder="Full name *" autocomplete="name" maxlength="100" aria-label="Full name" required>
         </div>
 
         <div class="mxp-field">
-          <input class="mxp-input" id="mxpEmail" name="email" type="email" placeholder="Email address *" autocomplete="email" maxlength="150" required>
+          <input class="mxp-input" id="mxpEmail" name="email" type="email" placeholder="Email address *" autocomplete="email" maxlength="150" aria-label="Email address" required>
         </div>
 
         <div class="mxp-field">
           <div class="mxp-phone-row">
             <select class="mxp-select" id="mxpCountry" name="country_code" aria-label="Country calling code" required></select>
-            <input class="mxp-input" id="mxpPhone" name="phone" type="tel" placeholder="Phone number *" autocomplete="tel" inputmode="tel" maxlength="30" required>
+            <input class="mxp-input" id="mxpPhone" name="phone" type="tel" placeholder="Phone number *" autocomplete="tel" inputmode="tel" maxlength="30" aria-label="Phone number" required>
           </div>
         </div>
 
         <div class="mxp-field">
-          <select class="mxp-select" id="mxpTopic" name="inquiry_topic" required>
+          <select class="mxp-select" id="mxpTopic" name="inquiry_topic" aria-label="Inquiry topic" required>
             <option value="" selected disabled>--- Select Inquiry Topic ---</option>
             <option value="General Inquiry">General Inquiry</option>
             <option value="Product Information">Product Information</option>
@@ -273,27 +269,32 @@ button { cursor: pointer; }
         </div>
 
         <div class="mxp-field">
-          <input class="mxp-input" id="mxpCompany" name="company" type="text" placeholder="Company (optional)" autocomplete="organization" maxlength="150">
+          <input class="mxp-input" id="mxpCompany" name="company" type="text" placeholder="Company (optional)" autocomplete="organization" maxlength="150" aria-label="Company (optional)">
         </div>
 
         <div class="mxp-field">
-          <textarea class="mxp-textarea" id="mxpMessage" name="message" placeholder="Please tell us how we can help... or Your message..." maxlength="2000" required></textarea>
+          <textarea class="mxp-textarea" id="mxpMessage" name="message" placeholder="Please tell us how we can help... or Your message..." maxlength="2000" aria-label="Your message" required></textarea>
           <span class="mxp-character-counter" id="mxpCharacterCounter" aria-live="polite">0/2000 characters</span>
         </div>
 
         <div class="mxp-field">
-          <div class="mxp-captcha-row">
-            <input class="mxp-input" id="mxpCaptchaInput" type="text" placeholder="Enter the code here *" maxlength="6" autocomplete="off" inputmode="text" required>
-            <div class="mxp-captcha-display" id="mxpCaptchaDisplay" aria-label="Verification code">Loading...</div>
-          </div>
-          <button class="mxp-captcha-refresh" id="mxpCaptchaRefresh" type="button">Refresh code</button>
+          <label class="mxp-consent" for="mxpConsent">
+            <input id="mxpConsent" name="consent" type="checkbox" value="yes" required>
+            <span>I agree that MaxproHealth may use my details to respond to this inquiry, as described in the <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>. *</span>
+          </label>
         </div>
 
-        <p class="mxp-form-status" id="mxpFormStatus" aria-live="polite"></p>
+        <div class="mxp-field mxp-turnstile">
+          <!-- Replace 0x4AAAAAAFZJXd6vRWYHAnvv with your Cloudflare Turnstile site key -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFZJXd6vRWYHAnvv" data-theme="auto"></div>
+        </div>
+
+        <noscript><p class="mxp-noscript">JavaScript is required to send this form.</p></noscript>
+
+        <p class="mxp-form-status" id="mxpFormStatus" role="status" aria-live="polite"></p>
         <p class="mxp-required-note">* Required fields</p>
 
         <button class="mxp-submit" id="mxpSubmit" type="submit">Send Inquiry</button>
-
       </form>
     </section>
 
@@ -305,18 +306,16 @@ button { cursor: pointer; }
 
 <script>
 (function () {
-
   "use strict";
 
   /* ============ GLOBAL HEADER / FOOTER ============ */
-
-  const headerContainer = document.getElementById("mxp-global-header");
-  const footerContainer = document.getElementById("mxp-global-footer");
-  const scrollTopContainer = document.getElementById("mxp-global-scroll-top");
+  var headerContainer = document.getElementById("mxp-global-header");
+  var footerContainer = document.getElementById("mxp-global-footer");
+  var scrollTopContainer = document.getElementById("mxp-global-scroll-top");
 
   function executeInsertedScripts(container) {
     container.querySelectorAll("script").forEach(function (oldScript) {
-      const newScript = document.createElement("script");
+      var newScript = document.createElement("script");
       Array.from(oldScript.attributes).forEach(function (attribute) {
         newScript.setAttribute(attribute.name, attribute.value);
       });
@@ -338,112 +337,91 @@ button { cursor: pointer; }
   }
 
   Promise.all([
-    loadGlobalPart("header.html", headerContainer),
-    loadGlobalPart("footer.html", footerContainer),
-    loadGlobalPart("scroll-top.html", scrollTopContainer)
+    loadGlobalPart("/header.html", headerContainer),
+    loadGlobalPart("/footer.html", footerContainer),
+    loadGlobalPart("/scroll-top.html", scrollTopContainer)
   ]).catch(function (error) {
     console.warn("MaxproHealth global component error:", error);
   });
 
   /* ============ MESSAGE COUNTER ============ */
+  var message = document.getElementById("mxpMessage");
+  var counter = document.getElementById("mxpCharacterCounter");
 
-  const message = document.getElementById("mxpMessage");
-  const counter = document.getElementById("mxpCharacterCounter");
-
-  function updateCounter() {
+  message.addEventListener("input", function () {
     counter.textContent = message.value.length + "/2000 characters";
+  });
+
+  /* ============ FORM SUBMISSION ============ */
+  var form = document.getElementById("mxpContactForm");
+  var topic = document.getElementById("mxpTopic");
+  var status = document.getElementById("mxpFormStatus");
+  var submitButton = document.getElementById("mxpSubmit");
+
+  function setStatus(text, success) {
+    status.textContent = text;
+    status.classList.toggle("success", !!success);
   }
 
-  message.addEventListener("input", updateCounter);
-
-  /* ============ CAPTCHA ============ */
-
-  const captchaDisplay = document.getElementById("mxpCaptchaDisplay");
-  const captchaInput = document.getElementById("mxpCaptchaInput");
-  const captchaRefresh = document.getElementById("mxpCaptchaRefresh");
-
-  let captchaCode = "";
-
-  function generateCaptcha() {
-    const characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    let generated = "";
-    for (let index = 0; index < 6; index++) {
-      generated += characters.charAt(Math.floor(Math.random() * characters.length));
+  function resetTurnstile() {
+    if (window.turnstile && typeof window.turnstile.reset === "function") {
+      try { window.turnstile.reset(); } catch (error) { /* ignore */ }
     }
-    captchaCode = generated;
-    captchaDisplay.textContent = captchaCode;
-    captchaInput.value = "";
   }
 
-  captchaRefresh.addEventListener("click", generateCaptcha);
-  generateCaptcha();
-
-  /* ============ FORM VALIDATION & SUBMISSION ============ */
-
-  const form = document.getElementById("mxpContactForm");
-  const topic = document.getElementById("mxpTopic");
-  const status = document.getElementById("mxpFormStatus");
-  const submitButton = document.getElementById("mxpSubmit");
-
-  const submitURL = "https://script.google.com/macros/s/AKfycbzn9Va-1DhDs0P953h3igrVP2przwXzoBRVSYyrhfNUtNz4DDp7hLc6orATfiZcsTZY2g/exec";
+  function unlock() {
+    submitButton.disabled = false;
+    submitButton.textContent = "Send Inquiry";
+  }
 
   form.addEventListener("submit", function (event) {
-
-    status.textContent = "";
-    status.classList.remove("success");
+    event.preventDefault();
+    setStatus("", false);
 
     if (!form.checkValidity()) {
-      event.preventDefault();
       form.reportValidity();
       return;
     }
 
     if (!topic.value) {
-      event.preventDefault();
-      status.textContent = "Please select an inquiry topic.";
+      setStatus("Please select an inquiry topic.", false);
       topic.focus();
       return;
     }
 
-    const enteredCode = captchaInput.value.trim().toUpperCase();
-
-    if (!enteredCode || enteredCode !== captchaCode) {
-      event.preventDefault();
-      status.textContent = "The verification code is incorrect. Please try again.";
-      generateCaptcha();
-      captchaInput.focus();
+    var tokenField = form.querySelector('[name="cf-turnstile-response"]');
+    if (!tokenField || !tokenField.value) {
+      setStatus("Please complete the verification check.", false);
       return;
     }
-
-    const honeypot = form.querySelector('input[name="_honey"]');
-    if (honeypot && honeypot.value) {
-      event.preventDefault();
-      return;
-    }
-
-    event.preventDefault();
 
     submitButton.disabled = true;
     submitButton.textContent = "Sending...";
 
-    fetch(submitURL, {
+    fetch("/api/contact", {
       method: "POST",
       body: new FormData(form),
-      mode: "no-cors"
+      headers: { "Accept": "application/json" }
     })
-    .then(function () {
-      window.location.href = "/thank-you.html";
-    })
-    .catch(function (error) {
-      console.error("MaxproHealth contact form error:", error);
-      status.textContent = "Something went wrong. Please try again.";
-      submitButton.disabled = false;
-      submitButton.textContent = "Send Inquiry";
-      generateCaptcha();
-    });
-
+      .then(function (response) {
+        return response.json().catch(function () { return {}; }).then(function (data) {
+          return { ok: response.ok, data: data };
+        });
+      })
+      .then(function (result) {
+        if (result.ok && result.data && result.data.ok) {
+          window.location.href = "/thank-you.html";
+          return;
+        }
+        throw new Error((result.data && result.data.error) || "Something went wrong. Please try again.");
+      })
+      .catch(function (error) {
+        console.error("MaxproHealth contact form error:", error);
+        setStatus(error && error.message ? error.message : "Something went wrong. Please try again.", false);
+        resetTurnstile();
+        unlock();
+      });
   });
-
 })();
 </script>
 
