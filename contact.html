@@ -46,6 +46,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
+  padding-top: 68px;
   min-height: 100vh;
   background: var(--page-bg);
   color: var(--text);
@@ -217,6 +218,27 @@ button { cursor: pointer; }
   html { scroll-behavior:auto; }
   .mxp-input, .mxp-select, .mxp-textarea, .mxp-submit { transition:none; }
 }
+
+@media (min-width:1021px) {
+  body { padding-top: 74px; }
+}
+
+/* Fallback header / footer (only if header.html / footer.html fail to load) */
+.mxp-fb-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 68px; display: flex; align-items: center;
+  background: var(--page-bg); border-bottom: 1px solid var(--border);
+}
+.mxp-fb-inner {
+  width: min(1200px, calc(100% - 24px)); margin-inline: auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.mxp-fb-brand { flex-shrink: 0; color: var(--text); font-size: 1.05rem; font-weight: 750; letter-spacing: -0.03em; text-decoration: none; }
+.mxp-fb-nav { display: flex; gap: 2px; overflow-x: auto; white-space: nowrap; }
+.mxp-fb-nav a, .mxp-fb-footer a { padding: 10px 9px; color: var(--muted); font-size: .88rem; font-weight: 600; text-decoration: none; }
+.mxp-fb-nav a:hover, .mxp-fb-footer a:hover { color: var(--accent-dark); }
+.mxp-fb-footer { margin-top: 40px; padding: 28px 16px; border-top: 1px solid var(--border); background: var(--surface-soft); text-align: center; }
+.mxp-fb-footer p { margin: 8px 0 0; color: var(--muted); font-size: .85rem; }
 </style>
 
 <!-- Country data -->
@@ -226,7 +248,24 @@ button { cursor: pointer; }
 </head>
 <body>
 
-<div id="mxp-global-header"></div>
+<div id="mxp-global-header">
+  <noscript>
+    <header class="mxp-fb-header">
+      <div class="mxp-fb-inner">
+        <a class="mxp-fb-brand" href="/">MaxproHealth</a>
+        <nav class="mxp-fb-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/health">Health</a>
+          <a href="/health-tools">Health Tools</a>
+          <a href="/medical-services">Medical Services</a>
+          <a href="/products">Products</a>
+          <a href="/k-beauty">K-Beauty</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+  </noscript>
+</div>
 
 <main class="mxp-contact-page">
   <div class="mxp-contact-container">
@@ -285,7 +324,6 @@ button { cursor: pointer; }
         </div>
 
         <div class="mxp-field mxp-turnstile">
-          <!-- Replace 0x4AAAAAAFZJXd6vRWYHAnvv with your Cloudflare Turnstile site key -->
           <div class="cf-turnstile" data-sitekey="0x4AAAAAAFZJXd6vRWYHAnvv" data-theme="auto"></div>
         </div>
 
@@ -336,12 +374,44 @@ button { cursor: pointer; }
       });
   }
 
-  Promise.all([
-    loadGlobalPart("/header.html", headerContainer),
-    loadGlobalPart("/footer.html", footerContainer),
-    loadGlobalPart("/scroll-top.html", scrollTopContainer)
-  ]).catch(function (error) {
-    console.warn("MaxproHealth global component error:", error);
+  var navLinks =
+    '<a href="/">Home</a><a href="/health">Health</a>' +
+    '<a href="/health-tools">Health Tools</a><a href="/medical-services">Medical Services</a>' +
+    '<a href="/products">Products</a><a href="/k-beauty">K-Beauty</a>' +
+    '<a href="/contact">Contact</a>';
+
+  function headerFallback() {
+    headerContainer.innerHTML =
+      '<header class="mxp-fb-header"><div class="mxp-fb-inner">' +
+      '<a class="mxp-fb-brand" href="/">MaxproHealth</a>' +
+      '<nav class="mxp-fb-nav" aria-label="Main navigation">' + navLinks + '</nav>' +
+      '</div></header>';
+  }
+
+  function footerFallback() {
+    footerContainer.innerHTML =
+      '<footer class="mxp-fb-footer">' +
+      '<nav aria-label="Footer navigation">' + navLinks + '</nav>' +
+      '<nav aria-label="Legal">' +
+      '<a href="/privacy-policy">Privacy Policy</a>' +
+      '<a href="/terms">Terms</a>' +
+      '<a href="/medical-disclaimer">Medical Disclaimer</a>' +
+      '<a href="/affiliate-disclosure">Affiliate Disclosure</a></nav>' +
+      '<p>\u00A9 ' + new Date().getFullYear() + ' MaxproHealth. All rights reserved.</p></footer>';
+  }
+
+  loadGlobalPart("/header.html", headerContainer).catch(function (error) {
+    console.warn("MaxproHealth header error:", error);
+    headerFallback();
+  });
+
+  loadGlobalPart("/footer.html", footerContainer).catch(function (error) {
+    console.warn("MaxproHealth footer error:", error);
+    footerFallback();
+  });
+
+  loadGlobalPart("/scroll-top.html", scrollTopContainer).catch(function (error) {
+    console.warn("MaxproHealth scroll-top error:", error);
   });
 
   /* ============ MESSAGE COUNTER ============ */
