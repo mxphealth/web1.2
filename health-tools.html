@@ -35,13 +35,23 @@ html.dark{--ht-bg:#101820;--ht-card:#18242e;--ht-text:#edf4f8;--ht-muted:#b1c0cb
 .ht-panel{padding:22px;border:1px solid var(--ht-border);border-radius:14px;background:var(--ht-card)}.ht-panel h3{margin:0 0 9px}.ht-panel p:last-child{margin-bottom:0}.ht-faq{display:grid;gap:11px;max-width:850px;margin:auto}.ht-faq details{padding:17px 19px;border:1px solid var(--ht-border);border-radius:12px;background:var(--ht-card)}.ht-faq summary{cursor:pointer;font-weight:750}.ht-faq details p{margin-bottom:0;color:var(--ht-muted)}.ht-cta{padding:30px;border:1px solid var(--ht-border);border-radius:17px;background:var(--ht-soft);text-align:center}.ht-cta h2{margin-top:0}.ht-cta p{max-width:680px;margin:0 auto;color:var(--ht-muted)}
 @media(max-width:760px){.ht-jump{grid-template-columns:repeat(2,minmax(0,1fr))}.ht-grid{grid-template-columns:1fr}}@media(max-width:440px){.ht-container{width:calc(100% - 24px)}.ht-jump{gap:8px}.ht-jump a{padding:10px;gap:8px;font-size:.87rem}.ht-icon{width:35px;height:35px;flex-basis:35px}.ht-fields{grid-template-columns:1fr}.ht-field.full{grid-column:auto}.ht-cta{padding:22px 17px}}
 @media(prefers-reduced-motion:reduce){#health-tools-page *{scroll-behavior:auto!important;transition:none!important}}
+body{margin:0;padding-top:68px;background:var(--ht-bg)}
+@media(min-width:1021px){body{padding-top:74px}}
+.mxp-fb-header{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;display:flex;align-items:center;background:var(--ht-card);border-bottom:1px solid var(--ht-border);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.mxp-fb-inner{width:min(1200px,calc(100% - 24px));margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mxp-fb-brand{flex-shrink:0;color:var(--ht-text);font-size:1.05rem;font-weight:750;letter-spacing:-.03em;text-decoration:none}
+.mxp-fb-nav{display:flex;gap:2px;overflow-x:auto;white-space:nowrap}
+.mxp-fb-nav a,.mxp-fb-footer a{padding:10px 9px;color:var(--ht-muted);font-size:.88rem;font-weight:600;text-decoration:none}
+.mxp-fb-nav a:hover,.mxp-fb-footer a:hover{color:var(--ht-primary)}
+.mxp-fb-footer{margin-top:40px;padding:28px 16px;border-top:1px solid var(--ht-border);background:var(--ht-card);text-align:center;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.mxp-fb-footer p{margin:8px 0 0;color:var(--ht-muted);font-size:.85rem}
 </style>
 </head>
 <body>
 
 <a href="#health-tools-page" class="ht-skip">Skip to main content</a>
 
-<div id="mxp-header"><noscript><p><a href="/">MaxproHealth</a> · <a href="/health">Health</a> · <a href="/health-tools">Health Tools</a> · <a href="/medical-services">Medical Services</a> · <a href="/products">Products</a> · <a href="/k-beauty">K-Beauty</a> · <a href="/contact">Contact</a></p></noscript></div>
+<div id="mxp-header"><noscript><header class="mxp-fb-header"><div class="mxp-fb-inner"><a class="mxp-fb-brand" href="/">MaxproHealth</a><nav class="mxp-fb-nav" aria-label="Main navigation"><a href="/">Home</a><a href="/health">Health</a><a href="/health-tools">Health Tools</a><a href="/medical-services">Medical Services</a><a href="/products">Products</a><a href="/k-beauty">K-Beauty</a><a href="/contact">Contact</a></nav></div></header></noscript></div>
 
 <main id="health-tools-page" tabindex="-1">
 
@@ -349,9 +359,16 @@ html.dark{--ht-bg:#101820;--ht-card:#18242e;--ht-text:#edf4f8;--ht-muted:#b1c0cb
 
   var TIMEOUT_MS = 10000;
 
+  var navLinks = '<a href="/">Home</a><a href="/health">Health</a><a href="/health-tools" aria-current="page">Health Tools</a><a href="/medical-services">Medical Services</a><a href="/products">Products</a><a href="/k-beauty">K-Beauty</a><a href="/contact">Contact</a>';
+
   function headerFallback() {
     var el = document.getElementById('mxp-header');
-    if (el) el.innerHTML = '<header><a href="/">MaxproHealth</a><nav aria-label="Main navigation"><a href="/health">Health</a> <a href="/health-tools" aria-current="page">Health Tools</a> <a href="/medical-services">Medical Services</a> <a href="/products">Products</a> <a href="/k-beauty">K-Beauty</a> <a href="/contact">Contact</a></nav></header>';
+    if (el) el.innerHTML = '<header class="mxp-fb-header"><div class="mxp-fb-inner"><a class="mxp-fb-brand" href="/">MaxproHealth</a><nav class="mxp-fb-nav" aria-label="Main navigation">' + navLinks + '</nav></div></header>';
+  }
+
+  function footerFallback() {
+    var el = document.getElementById('mxp-footer');
+    if (el) el.innerHTML = '<footer class="mxp-fb-footer"><nav aria-label="Footer navigation">' + navLinks + '</nav><nav aria-label="Legal"><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms</a><a href="/medical-disclaimer">Medical Disclaimer</a><a href="/affiliate-disclosure">Affiliate Disclosure</a></nav><p>\u00A9 ' + new Date().getFullYear() + ' MaxproHealth. All rights reserved.</p></footer>';
   }
 
   async function load(id, file, onFail) {
@@ -380,7 +397,7 @@ html.dark{--ht-bg:#101820;--ht-card:#18242e;--ht-text:#edf4f8;--ht-muted:#b1c0cb
 
   Promise.all([
     load('mxp-header', 'header.html', headerFallback),
-    load('mxp-footer', 'footer.html', null),
+    load('mxp-footer', 'footer.html', footerFallback),
     load('mxp-scroll-top', 'scroll-top.html', null)
   ]);
 })();
