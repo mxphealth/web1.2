@@ -108,7 +108,7 @@
 
     body {
       /* Reserves the fixed header's height before header.html loads,
-         so content does not jump. Values match header.html. */
+         so content does not jump. Values match header.html (breakpoint 1020px). */
       margin: 0;
       padding-top: 68px;
       background: var(--pg-bg);
@@ -120,7 +120,7 @@
       text-rendering: optimizeLegibility;
     }
 
-    @media (min-width: 851px) {
+    @media (min-width: 1021px) {
       body {
         padding-top: 74px;
       }
@@ -1165,18 +1165,18 @@
         </div>
 
         <ul class="mxp-chips">
-          <li><a class="mxp-chip" href="/products">Blood Sugar &amp; Metabolic Health</a></li>
-          <li><a class="mxp-chip" href="/products">Weight Management</a></li>
-          <li><a class="mxp-chip" href="/products">Heart &amp; Cardiovascular Health</a></li>
-          <li><a class="mxp-chip" href="/products">Digestive Health</a></li>
-          <li><a class="mxp-chip" href="/products">Joint &amp; Mobility</a></li>
-          <li><a class="mxp-chip" href="/products">Nutrition &amp; Supplements</a></li>
-          <li><a class="mxp-chip" href="/products">Sleep &amp; Stress</a></li>
-          <li><a class="mxp-chip" href="/products">Men&#39;s Health</a></li>
-          <li><a class="mxp-chip" href="/products">Women&#39;s Health</a></li>
-          <li><a class="mxp-chip" href="/products">Fitness &amp; Performance</a></li>
-          <li><a class="mxp-chip" href="/products">Skin &amp; Beauty</a></li>
-          <li><a class="mxp-chip" href="/products">General Wellness</a></li>
+          <li><a class="mxp-chip" href="/products#blood-sugar-metabolic-health">Blood Sugar &amp; Metabolic Health</a></li>
+          <li><a class="mxp-chip" href="/products#weight-management">Weight Management</a></li>
+          <li><a class="mxp-chip" href="/products#heart-cardiovascular-health">Heart &amp; Cardiovascular Health</a></li>
+          <li><a class="mxp-chip" href="/products#digestive-health">Digestive Health</a></li>
+          <li><a class="mxp-chip" href="/products#joint-mobility">Joint &amp; Mobility</a></li>
+          <li><a class="mxp-chip" href="/products#nutrition-supplements">Nutrition &amp; Supplements</a></li>
+          <li><a class="mxp-chip" href="/products#sleep-stress">Sleep &amp; Stress</a></li>
+          <li><a class="mxp-chip" href="/products#mens-health">Men&#39;s Health</a></li>
+          <li><a class="mxp-chip" href="/products#womens-health">Women&#39;s Health</a></li>
+          <li><a class="mxp-chip" href="/products#fitness-performance">Fitness &amp; Performance</a></li>
+          <li><a class="mxp-chip" href="/products#skin-beauty">Skin &amp; Beauty</a></li>
+          <li><a class="mxp-chip" href="/products#general-wellness">General Wellness</a></li>
         </ul>
 
         <a class="mxp-button mxp-button-primary" href="/products">Browse all products</a>
@@ -1361,6 +1361,8 @@
         <nav aria-label="Footer navigation">
           <a href="/">Home</a>
           <a href="/health">Health</a>
+          <a href="/health-tools">Health Tools</a>
+          <a href="/medical-services">Medical Services</a>
           <a href="/products">Products</a>
           <a href="/k-beauty">K-Beauty</a>
           <a href="/contact">Contact</a>
@@ -1381,8 +1383,8 @@
 
   <!-- =========================================================
        GLOBAL COMPONENT LOADER
-       Loads header.html, footer.html and scroll-top.html exactly
-       as before. If header or footer fail, a small fallback keeps
+       Loads header.html, footer.html and scroll-top.html from the
+       site root. If header or footer fail, a small fallback keeps
        the site navigable.
   ========================================================== -->
   <script>
@@ -1481,9 +1483,9 @@
       }
 
       Promise.all([
-        loadComponent("mxp-header", "header.html", true),
-        loadComponent("mxp-footer", "footer.html", true),
-        loadComponent("mxp-scroll-top", "scroll-top.html", false)
+        loadComponent("mxp-header", "/header.html", true),
+        loadComponent("mxp-footer", "/footer.html", true),
+        loadComponent("mxp-scroll-top", "/scroll-top.html", false)
       ]);
     })();
   </script>
