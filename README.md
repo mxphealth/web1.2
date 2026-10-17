@@ -16,3 +16,4 @@ Both new pages use the repository's existing shared component IDs and loader pat
 
 Deployment: keep the repository files at the project root so index.html, header.html, footer.html, and the other page files sit alongside each other.
 
+
