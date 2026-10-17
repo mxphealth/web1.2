@@ -21,12 +21,12 @@
       <a href="/contact">Contact</a>
     </nav>
 
-    <div class="mxp-footer-legal">
+    <nav class="mxp-footer-legal" aria-label="Legal">
       <a href="/privacy-policy">Privacy Policy</a>
       <a href="/terms">Terms</a>
       <a href="/medical-disclaimer">Medical Disclaimer</a>
       <a href="/affiliate-disclosure">Affiliate Disclosure</a>
-    </div>
+    </nav>
   </div>
 
   <div class="mxp-footer-bottom">
@@ -34,6 +34,11 @@
   </div>
 
   <style>
+    .mxp-footer,
+    .mxp-footer * {
+      box-sizing: border-box;
+    }
+
     .mxp-footer {
       margin-top: 60px;
       background: #101815;
@@ -79,7 +84,7 @@
     .mxp-footer-legal {
       display: flex;
       flex-direction: column;
-      gap: 11px;
+      gap: 2px;
     }
 
     .mxp-footer a {
@@ -89,8 +94,20 @@
       transition: color .2s ease;
     }
 
+    .mxp-footer-nav a,
+    .mxp-footer-legal a {
+      display: inline-block;
+      padding: 7px 0;
+    }
+
     .mxp-footer a:hover {
       color: #42c58b;
+    }
+
+    .mxp-footer a:focus-visible {
+      outline: 3px solid #42c58b;
+      outline-offset: 3px;
+      border-radius: 4px;
     }
 
     .mxp-footer-bottom {
@@ -130,10 +147,20 @@
         grid-column: auto;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mxp-footer a {
+        transition: none;
+      }
+    }
   </style>
 
   <script>
-    document.getElementById("mxpYear").textContent =
-      new Date().getFullYear();
+    (function () {
+      var year = document.getElementById("mxpYear");
+      if (year) {
+        year.textContent = String(new Date().getFullYear());
+      }
+    })();
   </script>
 </footer>
