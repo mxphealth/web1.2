@@ -15,3 +15,4 @@ Updated shared files:
 Both new pages use the repository's existing shared component IDs and loader pattern: mxp-header, mxp-footer, and mxp-scroll-top. They load header.html, footer.html, and scroll-top.html and reuse the global theme/language/menu behavior in header.html.
 
 Deployment: keep the repository files at the project root so index.html, header.html, footer.html, and the other page files sit alongside each other.
+
