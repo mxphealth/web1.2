@@ -1,8 +1,9 @@
 // Cloudflare Pages Function: /products/<product-name>
-// Looks the product up in the published Google Sheet and sends the visitor
-// to the affiliate link (server-side redirect, no page flash).
-
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd5A8sZ0ttf4fB--kQLbqJMK8ZJGIH4aPFpMoKY56Kqq8nZImezdkQppmHPlQT69jLDB8iFl6c5Tt3/pub?gid=0&single=true&output=csv";
+// Looks the product up in the Google Sheet (server-side) and sends the
+// visitor to the affiliate link with a 302 redirect.
+//
+// Required variable (Pages > Settings > Variables and Secrets):
+//   SHEET_CSV_URL  - published Google Sheet CSV URL
 
 function slugify(s) {
   return String(s || "").toLowerCase()
@@ -81,7 +82,8 @@ function redirect(location) {
     headers: {
       Location: location,
       "Cache-Control": "no-store",
-      "X-Robots-Tag": "noindex, nofollow"
+      "X-Robots-Tag": "noindex, nofollow",
+      "Referrer-Policy": "no-referrer"
     }
   });
 }
@@ -97,10 +99,10 @@ export async function onRequestGet(context) {
 
   var back = new URL("/products", context.request.url).href;
 
-  if (!slug) return redirect(back);
+  if (!slug || !context.env.SHEET_CSV_URL) return redirect(back);
 
   try {
-    var res = await fetch(SHEET_CSV_URL, {
+    var res = await fetch(context.env.SHEET_CSV_URL, {
       cf: { cacheTtl: 60, cacheEverything: true }
     });
 
